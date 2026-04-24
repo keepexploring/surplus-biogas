@@ -2,7 +2,7 @@
 
 A free, open-source calculator for smallholder biogas farmers in East and Southern Africa. Enter your daily dung input and cooking use to see how much surplus gas you could put to work.
 
-**Live demo:** https://tern360.github.io/biogas-calculator
+**Live demo:** [https://keepexploring.github.io/surplus-biogas/](https://keepexploring.github.io/surplus-biogas/)
 
 ---
 
@@ -89,5 +89,5 @@ const digesters = [
 
 MIT — free to use, adapt, and redistribute with attribution.
 
-Built by [Tern360](https://tern360.co.uk) / CREATIVenergie.  
+Built by [CREATIVenergie](https://www.creativenergie.co.uk) / CREATIVenergie.  
 Field data from SNV, BSP, Gurung (1997), Warnars & Oppenoorth (2014).

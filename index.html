@@ -7,229 +7,298 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ── DARK (default) ── */
+/* ═══════════════════════════════════════════════
+   COLOUR TOKENS — dark mode (default)
+   All colours reference these variables so
+   switching to light mode is a single class swap.
+   ═══════════════════════════════════════════════ */
 :root {
-  --bg:     #0c1810;
-  --card:   #14221a;
-  --card2:  #1a2e22;
-  --bdr:    #2c4236;
-  --hdr:    #091410;
-  --hdr2:   #132a1c;
-  --grn:    #4ec878;
-  --grn-lt: #162a1e;
-  --grn-md: #213a2c;
-  --tx:     #ddeae0;
-  --tx2:    #7ab48a;
-  --mu:     #6a8f76;
-  --amb:    #f5c842;
-  --amb-lt: #1e1500;
-  --amb-bd: #d4a520;
-  --red:    #f08080;
-  --red-lt: #200808;
-  --inf:    #56c8e0;
-  --inf-lt: #041820;
-  --r:10px;--rs:7px;
-  --sh:0 2px 8px rgba(0,0,0,.4);
+  --bg:      #0c1810;   /* page background          */
+  --card:    #14221a;   /* card surface             */
+  --card2:   #1a2e22;   /* card inner / metric bg   */
+  --bdr:     #2c4236;   /* borders                  */
+  --hdr:     #091410;   /* header bar               */
+  --hdr2:    #132a1c;   /* settings panel           */
+  --grn:     #4ec878;   /* primary accent (green)   */
+  --grn-lt:  #162a1e;   /* green tint background    */
+  --grn-md:  #213a2c;   /* green mid (bar fill)     */
+  --tx:      #ddeae0;   /* primary text             */
+  --tx2:     #7ab48a;   /* secondary text           */
+  --mu:      #6a8f76;   /* muted labels             */
+  --amb:     #f5c842;   /* amber / warning          */
+  --amb-lt:  #1e1500;   /* amber tint background    */
+  --amb-bd:  #d4a520;   /* amber border             */
+  --red:     #f08080;   /* danger                   */
+  --red-lt:  #200808;   /* red tint background      */
+  --inf:     #56c8e0;   /* info / blue              */
+  --inf-lt:  #041820;   /* info tint background     */
+  --r:   10px;
+  --rs:   7px;
+  --sh:  0 2px 8px rgba(0,0,0,.4);
 }
+
+/* ── Light mode overrides ── */
 html.light {
-  --bg:     #eef4f0;
-  --card:   #ffffff;
-  --card2:  #f5faf7;
-  --bdr:    #c0d8ca;
-  --hdr:    #183828;
-  --hdr2:   #265c42;
-  --grn:    #1e6640;
-  --grn-lt: #e2f0e9;
-  --grn-md: #a8d4bc;
-  --tx:     #102016;
-  --tx2:    #2e5840;
-  --mu:     #4e7060;
-  --amb:    #7a3808;
-  --amb-lt: #fef0cc;
-  --amb-bd: #e08e10;
-  --red:    #881818;
-  --red-lt: #fde4e4;
-  --inf:    #0a5e78;
-  --inf-lt: #d8eef4;
-  --sh:0 1px 4px rgba(0,0,0,.08);
+  --bg:      #eef4f0;
+  --card:    #ffffff;
+  --card2:   #f5faf7;
+  --bdr:     #c0d8ca;
+  --hdr:     #183828;
+  --hdr2:    #265c42;
+  --grn:     #1e6640;
+  --grn-lt:  #e2f0e9;
+  --grn-md:  #a8d4bc;
+  --tx:      #102016;
+  --tx2:     #2e5840;
+  --mu:      #4e7060;
+  --amb:     #7a3808;
+  --amb-lt:  #fef0cc;
+  --amb-bd:  #e08e10;
+  --red:     #881818;
+  --red-lt:  #fde4e4;
+  --inf:     #0a5e78;
+  --inf-lt:  #d8eef4;
+  --sh:      0 1px 4px rgba(0,0,0,.08);
 }
 
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--tx);font-size:16px;line-height:1.5;transition:background .25s,color .25s}
-a{color:var(--grn)}
+/* ── Reset & base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--bg);
+  color: var(--tx);
+  font-size: 16px;
+  line-height: 1.5;
+  transition: background .25s, color .25s;
+}
+a { color: var(--grn) }
 
-/* Header */
-.hdr{background:var(--hdr);padding:1.25rem 1.25rem 1rem;border-bottom:1px solid var(--bdr)}
-.hdr-in{max-width:840px;margin:0 auto;display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
-.hdr h1{font-size:clamp(1.15rem,3.5vw,1.55rem);font-weight:700;color:#fff;margin-bottom:.2rem}
-.hdr p{font-size:.84rem;color:#88b898;max-width:500px}
-.hdr-acts{display:flex;gap:.45rem;flex-shrink:0;margin-top:.1rem}
-.hbtn{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.2);color:#e8f0ea;border-radius:var(--rs);padding:.38rem .7rem;font-size:.76rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:.3rem;font-family:'Outfit',sans-serif;white-space:nowrap;transition:background .15s}
-.hbtn:hover{background:rgba(255,255,255,.2)}
-.hbtn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;flex-shrink:0}
+/* ═══════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════ */
+.hdr { background: var(--hdr); padding: 1.25rem 1.25rem 1rem; border-bottom: 1px solid var(--bdr) }
+.hdr-in { max-width: 840px; margin: 0 auto; display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem }
+.hdr h1 { font-size: clamp(1.15rem, 3.5vw, 1.55rem); font-weight: 700; color: #fff; margin-bottom: .2rem }
+.hdr p  { font-size: .84rem; color: #88b898; max-width: 500px }
+.hdr-acts { display: flex; gap: .45rem; flex-shrink: 0; margin-top: .1rem }
+.hbtn {
+  background: rgba(255,255,255,.11); border: 1px solid rgba(255,255,255,.2);
+  color: #e8f0ea; border-radius: var(--rs); padding: .38rem .7rem;
+  font-size: .76rem; font-weight: 600; cursor: pointer;
+  display: flex; align-items: center; gap: .3rem;
+  font-family: 'Outfit', sans-serif; white-space: nowrap; transition: background .15s;
+}
+.hbtn:hover { background: rgba(255,255,255,.2) }
+.hbtn svg   { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; flex-shrink: 0 }
 
-/* Settings panel */
-.set-wrap{background:var(--hdr2);overflow:hidden;max-height:0;transition:max-height .4s ease}
-.set-wrap.open{max-height:1100px}
-.set-in{max-width:840px;margin:0 auto;padding:1.25rem 1.25rem 1.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:1.25rem}
-.sg label,.sg .slbl{display:block;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#88b898;margin-bottom:.4rem}
-.sg input[type=number],.sg select{width:100%;padding:.48rem .65rem;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:var(--rs);color:#fff;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:500}
-.sg input[type=number]{text-align:center}
-.sg select option{background:#1b4332}
-.sn{font-size:.7rem;color:#70a880;margin-top:.35rem;line-height:1.45}
-.sr-row{display:flex;align-items:center;gap:.7rem}
-.sr-row input[type=range]{flex:1;accent-color:#6fd890}
-.sr-val{font-family:'DM Mono',monospace;font-size:.88rem;font-weight:600;color:#fff;min-width:48px;text-align:right}
-.sdiv{grid-column:1/-1;border:none;border-top:1px solid rgba(255,255,255,.1);margin:.2rem 0}
-.sfull{grid-column:1/-1}
-.s2col{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
-.s2col .slbl{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#88b898;margin-bottom:.4rem}
+/* ═══════════════════════════════════════════════
+   SETTINGS PANEL  (slides down from header)
+   ═══════════════════════════════════════════════ */
+.set-wrap { background: var(--hdr2); overflow: hidden; max-height: 0; transition: max-height .4s ease }
+.set-wrap.open { max-height: 1100px }
+.set-in {
+  max-width: 840px; margin: 0 auto;
+  padding: 1.25rem 1.25rem 1.5rem;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 1.25rem;
+}
+.sg label, .sg .slbl {
+  display: block; font-size: .68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .07em;
+  color: #88b898; margin-bottom: .4rem;
+}
+.sg input[type=number], .sg select {
+  width: 100%; padding: .48rem .65rem;
+  background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.18);
+  border-radius: var(--rs); color: #fff;
+  font-family: 'Outfit', sans-serif; font-size: .88rem; font-weight: 500;
+}
+.sg input[type=number] { text-align: center }
+.sg select option { background: #1b4332 }
+.sn        { font-size: .7rem; color: #70a880; margin-top: .35rem; line-height: 1.45 }
+.sr-row    { display: flex; align-items: center; gap: .7rem }
+.sr-row input[type=range] { flex: 1; accent-color: #6fd890 }
+.sr-val    { font-family: 'DM Mono', monospace; font-size: .88rem; font-weight: 600; color: #fff; min-width: 48px; text-align: right }
+.sdiv      { grid-column: 1/-1; border: none; border-top: 1px solid rgba(255,255,255,.1); margin: .2rem 0 }
+.sfull     { grid-column: 1/-1 }
+.s2col     { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem }
+.s2col .slbl { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #88b898; margin-bottom: .4rem }
 
-/* Yield chips */
-.ychips{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.45rem}
-.yc{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#b8d8c4;border-radius:20px;padding:.18rem .55rem;font-size:.69rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .15s;white-space:nowrap}
-.yc:hover,.yc.on{background:rgba(255,255,255,.22);border-color:rgba(255,255,255,.4);color:#fff}
+/* Feedstock quick-select chips */
+.ychips { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .45rem }
+.yc {
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15);
+  color: #b8d8c4; border-radius: 20px; padding: .18rem .55rem;
+  font-size: .69rem; font-weight: 600; cursor: pointer;
+  font-family: 'Outfit', sans-serif; transition: all .15s; white-space: nowrap;
+}
+.yc:hover, .yc.on { background: rgba(255,255,255,.22); border-color: rgba(255,255,255,.4); color: #fff }
 
-/* Feedstock table */
-.ftbl{margin-top:.8rem;border-top:1px solid rgba(255,255,255,.1);padding-top:.7rem}
-.ftbl-hd{font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:#88b898;margin-bottom:.45rem}
-.ftbl table{width:100%;border-collapse:collapse;font-size:.72rem}
-.ftbl td{padding:.25rem .3rem;color:#aacaba;line-height:1.4;vertical-align:top;border-bottom:1px solid rgba(255,255,255,.05)}
-.ftbl tr:last-child td{border-bottom:none}
-.ftbl td:first-child{color:#88b898;width:38%;padding-right:.5rem}
-.ftbl td:nth-child(2){font-family:'DM Mono',monospace;color:#fff;font-weight:600;width:22%;padding-right:.5rem;white-space:nowrap}
+/* Feedstock reference table (inside settings) */
+.ftbl { margin-top: .8rem; border-top: 1px solid rgba(255,255,255,.1); padding-top: .7rem }
+.ftbl-hd { font-size: .67rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #88b898; margin-bottom: .45rem }
+.ftbl table { width: 100%; border-collapse: collapse; font-size: .72rem }
+.ftbl td { padding: .25rem .3rem; color: #aacaba; line-height: 1.4; vertical-align: top; border-bottom: 1px solid rgba(255,255,255,.05) }
+.ftbl tr:last-child td { border-bottom: none }
+.ftbl td:first-child  { color: #88b898; width: 38%; padding-right: .5rem }
+.ftbl td:nth-child(2) { font-family: 'DM Mono', monospace; color: #fff; font-weight: 600; width: 22%; padding-right: .5rem; white-space: nowrap }
 
-/* Main */
-.main{max-width:840px;margin:0 auto;padding:.875rem 1rem 2.5rem}
-.card{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);padding:1.25rem;margin-bottom:.875rem;box-shadow:var(--sh)}
-.ctitle{font-size:.92rem;font-weight:700;color:var(--tx);margin-bottom:1rem}
-.field{margin-bottom:.975rem}.field:last-child{margin-bottom:0}
-.flbl{display:block;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:.4rem}
+/* ═══════════════════════════════════════════════
+   MAIN LAYOUT
+   ═══════════════════════════════════════════════ */
+.main  { max-width: 840px; margin: 0 auto; padding: .875rem 1rem 2.5rem }
+.card  { background: var(--card); border: 1px solid var(--bdr); border-radius: var(--r); padding: 1.25rem; margin-bottom: .875rem; box-shadow: var(--sh) }
+.ctitle { font-size: .92rem; font-weight: 700; color: var(--tx); margin-bottom: 1rem }
+.field { margin-bottom: .975rem }
+.field:last-child { margin-bottom: 0 }
+.flbl  { display: block; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--mu); margin-bottom: .4rem }
 
-/* Toggles */
-.tg3{display:grid;grid-template-columns:repeat(4,1fr);gap:.4rem}
-.tg2{display:flex;gap:.4rem}
-.tbtn{padding:.62rem .4rem;font-size:.84rem;font-weight:600;font-family:'Outfit',sans-serif;border:2px solid var(--bdr);border-radius:var(--rs);background:var(--bg);color:var(--mu);cursor:pointer;text-align:center;line-height:1.3;transition:all .15s}
-.tbtn small{display:block;font-size:.67rem;font-weight:400;margin-top:2px;color:var(--mu)}
-.tbtn.on{border-color:var(--grn);background:var(--grn-lt);color:var(--grn)}
-.tbtn.on small{color:var(--grn)}
-.tg2 .tbtn{flex:1}
+/* Toggle button groups (digester size, stove type) */
+.tg4  { display: grid; grid-template-columns: repeat(4, 1fr); gap: .4rem }
+.tg2  { display: flex; gap: .4rem }
+.tbtn {
+  padding: .62rem .4rem; font-size: .84rem; font-weight: 600;
+  font-family: 'Outfit', sans-serif;
+  border: 2px solid var(--bdr); border-radius: var(--rs);
+  background: var(--bg); color: var(--mu);
+  cursor: pointer; text-align: center; line-height: 1.3; transition: all .15s;
+}
+.tbtn small { display: block; font-size: .67rem; font-weight: 400; margin-top: 2px; color: var(--mu) }
+.tbtn.on { border-color: var(--grn); background: var(--grn-lt); color: var(--grn) }
+.tbtn.on small { color: var(--grn) }
+.tg2 .tbtn { flex: 1 }
 
-/* Custom digester inputs */
-.cdig{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem;margin-top:.6rem;padding:.75rem;background:var(--grn-lt);border:1px solid var(--grn-md);border-radius:var(--rs)}
-.cdig-lbl{font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tx2);margin-bottom:.3rem}
-.cdig input{width:100%;padding:.42rem .5rem;background:var(--card);border:1px solid var(--bdr);border-radius:5px;color:var(--tx);font-family:'DM Mono',monospace;font-size:.88rem;text-align:center}
+/* Sliders */
+.sl-row { display: flex; align-items: center; gap: .75rem }
+.sl-row input[type=range] { flex: 1; height: 5px; accent-color: var(--grn); cursor: pointer }
+.sl-val { font-family: 'DM Mono', monospace; font-size: .96rem; font-weight: 600; color: var(--tx); min-width: 64px; text-align: right; white-space: nowrap }
 
-/* Slider */
-.sl-row{display:flex;align-items:center;gap:.75rem}
-.sl-row input[type=range]{flex:1;height:5px;accent-color:var(--grn);cursor:pointer}
-.sl-val{font-family:'DM Mono',monospace;font-size:.96rem;font-weight:600;color:var(--tx);min-width:64px;text-align:right;white-space:nowrap}
+/* Loading zone bar (optimal/under/overloaded visualisation) */
+.zbar    { height: 7px; border-radius: 4px; background: var(--bdr); position: relative; margin: 5px 0 3px; overflow: visible }
+.zbar-in { position: absolute; inset: 0; border-radius: 4px; overflow: hidden }
+.zlo     { position: absolute; top: 0; height: 100%; background: var(--amb-lt) }  /* underloaded zone */
+.zok     { position: absolute; top: 0; height: 100%; background: var(--grn-md) }  /* optimal zone     */
+.zhi     { position: absolute; top: 0; height: 100%; background: var(--red-lt) }  /* overloaded zone  */
+.zptr    { position: absolute; top: -4px; width: 3px; height: 15px; background: var(--grn); border-radius: 2px; transition: left .2s; z-index: 2 }
+.zlbls   { display: flex; justify-content: space-between; font-size: .66rem; color: var(--mu); margin-bottom: .3rem }
+.zlbls .opt { color: var(--grn); font-weight: 700 }
+.lbadge  { display: inline-flex; align-items: center; gap: .3rem; font-size: .75rem; font-weight: 700; padding: .18rem .55rem; border-radius: 20px; margin-top: .35rem }
+.bok { background: var(--grn-lt); color: var(--grn) }
+.blo { background: var(--amb-lt); color: var(--amb) }
+.bhi { background: var(--red-lt); color: var(--red) }
 
-/* Zone bar */
-.zbar{height:7px;border-radius:4px;background:var(--bdr);position:relative;margin:5px 0 3px;overflow:visible}
-.zbar-in{position:absolute;inset:0;border-radius:4px;overflow:hidden}
-.zlo{position:absolute;top:0;height:100%;background:var(--amb-lt)}
-.zok{position:absolute;top:0;height:100%;background:var(--grn-md)}
-.zhi{position:absolute;top:0;height:100%;background:var(--red-lt)}
-.zptr{position:absolute;top:-4px;width:3px;height:15px;background:var(--grn);border-radius:2px;transition:left .2s;z-index:2}
-.zlbls{display:flex;justify-content:space-between;font-size:.66rem;color:var(--mu);margin-bottom:.3rem}
-.zlbls .opt{color:var(--grn);font-weight:700}
-.lbadge{display:inline-flex;align-items:center;gap:.3rem;font-size:.75rem;font-weight:700;padding:.18rem .55rem;border-radius:20px;margin-top:.35rem}
-.bok{background:var(--grn-lt);color:var(--grn)}
-.blo{background:var(--amb-lt);color:var(--amb)}
-.bhi{background:var(--red-lt);color:var(--red)}
+/* Slurry / bucket callout (inside inputs card) */
+.slurry      { background: var(--grn-lt); border: 1px solid var(--grn-md); border-radius: var(--rs); padding: .7rem .9rem; margin-top: .75rem; font-size: .81rem; color: var(--tx2); line-height: 1.55 }
+.slurry strong  { color: var(--grn) }
+.slurry .mwarn  { color: var(--amb); font-weight: 600 }
+.slurry .minfo  { color: var(--inf); font-weight: 500 }
 
-/* Slurry callout */
-.slurry{background:var(--grn-lt);border:1px solid var(--grn-md);border-radius:var(--rs);padding:.7rem .9rem;margin-top:.75rem;font-size:.81rem;color:var(--tx2);line-height:1.55}
-.slurry strong{color:var(--grn)}
-.slurry .mwarn{color:var(--amb);font-weight:600}
-.slurry .minfo{color:var(--inf);font-weight:500}
+/* ═══════════════════════════════════════════════
+   RESULTS CARD
+   ═══════════════════════════════════════════════ */
 
-/* Metrics */
-.mets{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;margin-bottom:1rem}
-@media(max-width:460px){.mets{grid-template-columns:1fr 1fr}}
-.met{background:var(--card2);border:1px solid var(--bdr);border-radius:var(--rs);padding:.75rem .875rem}
-.met-lbl{font-size:.67rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--mu);margin-bottom:.18rem}
-.met-val{font-family:'DM Mono',monospace;font-size:1.48rem;font-weight:500;color:var(--tx);line-height:1}
-.met-unit{font-size:.7rem;color:var(--mu);margin-top:.18rem}
-.met-sub{font-size:.65rem;color:var(--mu);margin-top:.18rem;font-style:italic;line-height:1.3}
-.met.good .met-val{color:var(--grn)}.met.warn .met-val{color:var(--amb)}.met.bad .met-val{color:var(--red)}
+/* Three-column metric tiles */
+.mets { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin-bottom: 1rem }
+@media (max-width: 460px) { .mets { grid-template-columns: 1fr 1fr } }
+.met      { background: var(--card2); border: 1px solid var(--bdr); border-radius: var(--rs); padding: .75rem .875rem }
+.met-lbl  { font-size: .67rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--mu); margin-bottom: .18rem }
+.met-val  { font-family: 'DM Mono', monospace; font-size: 1.48rem; font-weight: 500; color: var(--tx); line-height: 1 }
+.met-unit { font-size: .7rem; color: var(--mu); margin-top: .18rem }
+.met-sub  { font-size: .65rem; color: var(--mu); margin-top: .18rem; font-style: italic; line-height: 1.3 }
+.met.good .met-val { color: var(--grn) }
+.met.warn .met-val { color: var(--amb) }
+.met.bad  .met-val { color: var(--red) }
 
-/* Bar */
-.bwrap{margin-bottom:.875rem}
-.blbls{display:flex;justify-content:space-between;font-size:.72rem;font-weight:600;color:var(--mu);margin-bottom:.28rem}
-.btrack{height:13px;background:var(--card2);border-radius:7px;overflow:hidden;position:relative;border:1px solid var(--bdr)}
-.bcook{position:absolute;left:0;top:0;height:100%;background:var(--grn-md);transition:width .3s}
-.bsurp{position:absolute;top:0;height:100%;transition:left .3s,width .3s}
-.bsurp.good{background:var(--grn)}.bsurp.warn{background:var(--amb-bd)}.bsurp.bad{background:var(--red)}
+/* Production vs cooking stacked bar */
+.bwrap  { margin-bottom: .875rem }
+.blbls  { display: flex; justify-content: space-between; font-size: .72rem; font-weight: 600; color: var(--mu); margin-bottom: .28rem }
+.btrack { height: 13px; background: var(--card2); border-radius: 7px; overflow: hidden; position: relative; border: 1px solid var(--bdr) }
+.bcook  { position: absolute; left: 0; top: 0; height: 100%; background: var(--grn-md); transition: width .3s }
+.bsurp  { position: absolute; top: 0; height: 100%; transition: left .3s, width .3s }
+.bsurp.good { background: var(--grn) }
+.bsurp.warn { background: var(--amb-bd) }
+.bsurp.bad  { background: var(--red) }
 
-/* Status / info notes */
-.snote{font-size:.84rem;padding:.8rem 1rem;border-radius:var(--rs);margin-bottom:.875rem;line-height:1.55;font-weight:500}
-.snote.good{background:var(--grn-lt);color:var(--grn);border-left:3px solid var(--grn)}
-.snote.warn{background:var(--amb-lt);color:var(--amb);border-left:3px solid var(--amb-bd)}
-.snote.bad {background:var(--red-lt);color:var(--red);border-left:3px solid var(--red)}
-.effbox{background:var(--inf-lt);border:1px solid var(--inf);border-radius:var(--rs);padding:.68rem .9rem;font-size:.79rem;color:var(--inf);line-height:1.5;margin-bottom:.875rem}
-.effbox strong{display:block;font-size:.82rem;margin-bottom:.18rem}
+/* Status banner (good / warn / bad) */
+.snote { font-size: .84rem; padding: .8rem 1rem; border-radius: var(--rs); margin-bottom: .875rem; line-height: 1.55; font-weight: 500 }
+.snote.good { background: var(--grn-lt); color: var(--grn); border-left: 3px solid var(--grn) }
+.snote.warn { background: var(--amb-lt); color: var(--amb); border-left: 3px solid var(--amb-bd) }
+.snote.bad  { background: var(--red-lt); color: var(--red); border-left: 3px solid var(--red) }
 
-/* Table */
-.tscroll{overflow-x:auto}
-.dt{width:100%;border-collapse:collapse;font-size:.79rem}
-.dt th{text-align:left;font-weight:700;font-size:.67rem;text-transform:uppercase;letter-spacing:.05em;color:var(--mu);padding:.45rem .55rem;border-bottom:2px solid var(--bdr)}
-.dt td{padding:.45rem .55rem;border-bottom:1px solid var(--bdr);color:var(--tx2)}
-.dt tr:last-child td{border-bottom:none}
-.dt tr.sel td{background:var(--grn-lt);color:var(--grn);font-weight:600}
-.dt tr.sel td:first-child{border-left:3px solid var(--grn)}
-.stag{display:inline-block;font-size:.62rem;font-weight:700;background:var(--grn);color:#fff;padding:1px 6px;border-radius:3px;margin-left:5px;vertical-align:middle}
-.pill{display:inline-block;font-size:.69rem;padding:2px 8px;border-radius:20px;font-weight:700}
-.pok{background:var(--grn-lt);color:var(--grn)}.plo{background:var(--amb-lt);color:var(--amb)}.phi{background:var(--red-lt);color:var(--red)}
+/* Efficiency explanation box */
+.effbox        { background: var(--inf-lt); border: 1px solid var(--inf); border-radius: var(--rs); padding: .68rem .9rem; font-size: .79rem; color: var(--inf); line-height: 1.5; margin-bottom: .875rem }
+.effbox strong { display: block; font-size: .82rem; margin-bottom: .18rem }
 
-/* Use cards */
-.ugrid{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
-@media(max-width:460px){.ugrid{grid-template-columns:1fr}}
-.ucard{background:var(--card2);border:2px solid var(--bdr);border-radius:var(--rs);padding:.85rem .95rem;cursor:pointer;transition:border-color .15s}
-.ucard:hover{border-color:var(--grn)}
-.ucard.ok{border-color:var(--grn);background:var(--grn-lt)}
-.ucard.mg{border-color:var(--amb-bd);background:var(--amb-lt)}
-.ucard.sel{border-color:var(--grn);border-bottom-left-radius:0;border-bottom-right-radius:0}
-.utop{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:.22rem}
-.uname{font-size:.87rem;font-weight:700;color:var(--tx);display:flex;align-items:center;gap:.3rem}
-.uname .chv{font-size:.62rem;transition:transform .2s;color:var(--mu)}
-.uname .chv.open{transform:rotate(180deg)}
-.ucard.ok .uname,.ucard.sel .uname{color:var(--grn)}
-.ucard.mg .uname{color:var(--amb)}
-.udet{font-size:.73rem;color:var(--mu);margin-top:.12rem;line-height:1.4}
-.ubadge{font-size:.63rem;font-weight:700;padding:2px 7px;border-radius:20px;flex-shrink:0;margin-left:.4rem;white-space:nowrap}
-.uby{background:var(--grn-lt);color:var(--grn)}
-.uba{background:var(--amb-lt);color:var(--amb)}
-.ubn{background:var(--red-lt);color:var(--red)}
+/* ═══════════════════════════════════════════════
+   DIGESTER REFERENCE TABLE
+   ═══════════════════════════════════════════════ */
+.tscroll { overflow-x: auto }
+.dt { width: 100%; border-collapse: collapse; font-size: .79rem }
+.dt th { text-align: left; font-weight: 700; font-size: .67rem; text-transform: uppercase; letter-spacing: .05em; color: var(--mu); padding: .45rem .55rem; border-bottom: 2px solid var(--bdr) }
+.dt td { padding: .45rem .55rem; border-bottom: 1px solid var(--bdr); color: var(--tx2) }
+.dt tr:last-child td { border-bottom: none }
+.dt tr.sel td { background: var(--grn-lt); color: var(--grn); font-weight: 600 }
+.dt tr.sel td:first-child { border-left: 3px solid var(--grn) }
+.stag { display: inline-block; font-size: .62rem; font-weight: 700; background: var(--grn); color: #fff; padding: 1px 6px; border-radius: 3px; margin-left: 5px; vertical-align: middle }
+.pill { display: inline-block; font-size: .69rem; padding: 2px 8px; border-radius: 20px; font-weight: 700 }
+.pok { background: var(--grn-lt); color: var(--grn) }
+.plo { background: var(--amb-lt); color: var(--amb) }
+.phi { background: var(--red-lt); color: var(--red) }
 
-/* Expansion panel — full width row below uses grid */
-.uexp{display:none;grid-column:1/-1;background:var(--card);border:2px solid var(--grn);border-top:none;border-radius:0 0 var(--rs) var(--rs);padding:1rem 1.125rem}
-.uexp.open{display:block}
-.uexp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:.875rem;margin-bottom:.875rem}
-.exp-lbl{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:.28rem}
-.exp-val{font-size:.79rem;color:var(--tx2);line-height:1.52}
-.exp-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;padding-top:.625rem;border-top:1px solid var(--bdr)}
-.exp-note{font-size:.74rem;color:var(--mu)}
-.askbtn{background:var(--grn);color:#fff;border:none;border-radius:var(--rs);padding:.38rem .85rem;font-size:.77rem;font-weight:700;cursor:pointer;font-family:'Outfit',sans-serif;transition:opacity .15s}
-.askbtn:hover{opacity:.82}
+/* ═══════════════════════════════════════════════
+   PRODUCTIVE USE CARDS  (tap to expand)
+   ═══════════════════════════════════════════════ */
+.ugrid { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem }
+@media (max-width: 460px) { .ugrid { grid-template-columns: 1fr } }
 
-/* Beyond cards */
-.bgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:.5rem}
-.bcard{background:var(--card2);border:1.5px solid var(--bdr);border-radius:var(--rs);padding:.75rem .875rem}
-.bcard.sp{border-color:var(--grn-md);background:var(--grn-lt)}
-.btitle{font-size:.81rem;font-weight:700;color:var(--tx);margin-bottom:.2rem}
-.bsub{font-size:.71rem;color:var(--mu);line-height:1.45}
-.bcard.sp .btitle{color:var(--grn)}.bcard.sp .bsub{color:var(--tx2)}
+.ucard { background: var(--card2); border: 2px solid var(--bdr); border-radius: var(--rs); padding: .85rem .95rem; cursor: pointer; transition: border-color .15s }
+.ucard:hover { border-color: var(--grn) }
+.ucard.ok  { border-color: var(--grn);    background: var(--grn-lt) }   /* surplus covers this use     */
+.ucard.mg  { border-color: var(--amb-bd); background: var(--amb-lt) }   /* surplus nearly covers it    */
+.ucard.sel { border-color: var(--grn); border-bottom-left-radius: 0; border-bottom-right-radius: 0 }
 
-.srcnote{font-size:.69rem;color:var(--mu);margin-top:.75rem;line-height:1.5;border-top:1px solid var(--bdr);padding-top:.7rem}
-footer{text-align:center;font-size:.71rem;color:var(--mu);padding:1.5rem 1rem;border-top:1px solid var(--bdr)}
+.utop  { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: .22rem }
+.uname { font-size: .87rem; font-weight: 700; color: var(--tx); display: flex; align-items: center; gap: .3rem }
+.uname .chv { font-size: .62rem; transition: transform .2s; color: var(--mu) }
+.uname .chv.open { transform: rotate(180deg) }
+.ucard.ok  .uname,
+.ucard.sel .uname { color: var(--grn) }
+.ucard.mg  .uname { color: var(--amb) }
+.udet { font-size: .73rem; color: var(--mu); margin-top: .12rem; line-height: 1.4 }
+
+.ubadge { font-size: .63rem; font-weight: 700; padding: 2px 7px; border-radius: 20px; flex-shrink: 0; margin-left: .4rem; white-space: nowrap }
+.uby { background: var(--grn-lt); color: var(--grn) }
+.uba { background: var(--amb-lt); color: var(--amb) }
+.ubn { background: var(--red-lt); color: var(--red) }
+
+/* Expansion detail panel — full-width, sits below the grid */
+.uexp { display: none; background: var(--card); border: 2px solid var(--grn); border-top: none; border-radius: 0 0 var(--rs) var(--rs); padding: 1rem 1.125rem }
+.uexp.open { display: block }
+.uexp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: .875rem }
+.exp-lbl { font-size: .66rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--mu); margin-bottom: .28rem }
+.exp-val { font-size: .79rem; color: var(--tx2); line-height: 1.52 }
+
+/* ═══════════════════════════════════════════════
+   "THINK BEYOND" CARDS  (static, info only)
+   ═══════════════════════════════════════════════ */
+.bgrid  { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: .5rem }
+.bcard  { background: var(--card2); border: 1.5px solid var(--bdr); border-radius: var(--rs); padding: .75rem .875rem }
+.bcard.sp { border-color: var(--grn-md); background: var(--grn-lt) }   /* highlighted "my own idea" card */
+.btitle { font-size: .81rem; font-weight: 700; color: var(--tx); margin-bottom: .2rem }
+.bsub   { font-size: .71rem; color: var(--mu); line-height: 1.45 }
+.bcard.sp .btitle { color: var(--grn) }
+.bcard.sp .bsub   { color: var(--tx2) }
+
+/* Source note & footer */
+.srcnote { font-size: .69rem; color: var(--mu); margin-top: .75rem; line-height: 1.5; border-top: 1px solid var(--bdr); padding-top: .7rem }
+footer   { text-align: center; font-size: .71rem; color: var(--mu); padding: 1.5rem 1rem; border-top: 1px solid var(--bdr) }
 </style>
 </head>
 <body>
-<div v-scope="App()" @vue:mounted="init()">
+<div v-scope="App()" @vue:mounted="onMount()">
 
-<!-- HEADER -->
+<!-- ═══════════════════════════════════════════════
+     HEADER
+     ═══════════════════════════════════════════════ -->
 <div class="hdr">
   <div class="hdr-in">
     <div>
@@ -237,281 +306,435 @@ footer{text-align:center;font-size:.71rem;color:var(--mu);padding:1.5rem 1rem;bo
       <p>Select your digester, enter daily dung and cooking — see surplus and what it could power.</p>
     </div>
     <div class="hdr-acts">
+      <!-- Light / dark toggle -->
       <button class="hbtn" @click="toggleTheme()">
-        <svg v-if="isDark" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg v-if="isDark" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1"  x2="12" y2="3"/>  <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="1"  y1="12" x2="3"  y2="12"/>  <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
         <svg v-if="!isDark" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
         {{ isDark ? 'Light' : 'Dark' }}
       </button>
-      <button class="hbtn" @click="showSet = !showSet">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+      <!-- Settings toggle -->
+      <button class="hbtn" @click="showSettings = !showSettings">
+        <svg viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+        </svg>
         Settings
       </button>
     </div>
   </div>
 </div>
 
-<!-- SETTINGS -->
-<div class="set-wrap" :class="{ open: showSet }">
+<!-- ═══════════════════════════════════════════════
+     SETTINGS PANEL  (slides down)
+     ═══════════════════════════════════════════════ -->
+<div class="set-wrap" :class="{ open: showSettings }">
   <div class="set-in">
-    <!-- Yield: full width -->
+
+    <!-- Biogas generation rate (m³ produced per kg of feedstock) -->
     <div class="sg sfull">
       <label>Biogas generation rate (m³ per kg of feedstock)</label>
       <div style="display:flex;align-items:center;gap:.75rem">
-        <input type="number" v-model.number="biogasYield" min="0.01" max="0.20" step="0.005" style="max-width:108px" @input="save()">
+        <input type="number" v-model.number="biogasYieldPerKg"
+               min="0.01" max="0.20" step="0.005" style="max-width:108px"
+               @input="saveSettings()">
         <span style="color:#88b898;font-size:.8rem">m³ per kg</span>
       </div>
+      <!-- Quick-select chips for common feedstocks -->
       <div class="ychips">
-        <button v-for="c in YCHIPS" :key="c.v" class="yc" :class="{on: Math.abs(biogasYield-c.v)<.001}" @click="biogasYield=c.v;save()">{{ c.l }}</button>
+        <button v-for="chip in FEEDSTOCK_CHIPS" :key="chip.value" class="yc"
+          :class="{ on: Math.abs(biogasYieldPerKg - chip.value) < 0.001 }"
+          @click="biogasYieldPerKg = chip.value; saveSettings()">
+          {{ chip.label }}
+        </button>
       </div>
+      <!-- Reference table of yields by feedstock type -->
       <div class="ftbl">
         <p class="ftbl-hd">Feedstock reference</p>
         <table>
-          <tr v-for="f in FEEDS" :key="f.n"><td>{{ f.n }}</td><td>{{ f.y }}</td><td>{{ f.d }}</td></tr>
+          <tr v-for="row in FEEDSTOCK_REFERENCE" :key="row.name">
+            <td>{{ row.name }}</td>
+            <td>{{ row.yield }}</td>
+            <td>{{ row.notes }}</td>
+          </tr>
         </table>
       </div>
     </div>
+
     <hr class="sdiv">
-    <!-- Stove rates -->
+
+    <!-- Stove gas consumption rates -->
     <div class="sg sfull">
-      <label>Stove gas consumption (m³/hour)</label>
+      <label>Stove gas consumption (m³ per hour of cooking)</label>
       <div class="s2col">
         <div>
           <div class="slbl">Single stove</div>
-          <input type="number" v-model.number="rSingle" min="0.1" max="1.0" step="0.05" @input="save()">
-          <p class="sn">Default 0.30 m³/hr (SNV/BSP)</p>
+          <input type="number" v-model.number="singleStoveRate"
+                 min="0.1" max="1.0" step="0.05" @input="saveSettings()">
+          <p class="sn">Default 0.30 m³/hr (SNV/BSP field standard)</p>
         </div>
         <div>
           <div class="slbl">Double stove</div>
-          <input type="number" v-model.number="rDouble" min="0.1" max="2.0" step="0.05" @input="save()">
-          <p class="sn">Default 0.60 m³/hr</p>
+          <input type="number" v-model.number="doubleStoveRate"
+                 min="0.1" max="2.0" step="0.05" @input="saveSettings()">
+          <p class="sn">Default 0.60 m³/hr (2 × single)</p>
         </div>
       </div>
     </div>
+
     <hr class="sdiv">
-    <!-- Bucket + ratio -->
+
+    <!-- Slurry mixing parameters -->
     <div class="sg">
       <label>Bucket size (litres)</label>
-      <input type="number" v-model.number="bucketL" min="1" max="50" step="1" @input="save()">
+      <input type="number" v-model.number="bucketSizeLitres"
+             min="1" max="50" step="1" @input="saveSettings()">
       <p class="sn">The bucket you mix and carry slurry in. Typical: 5 L, 10 L, 20 L jerrycan.</p>
     </div>
     <div class="sg">
       <label>Water : dung mix ratio</label>
       <div class="sr-row">
-        <input type="range" v-model.number="ratio" min="0.5" max="3.0" step="0.5" @input="save()">
-        <span class="sr-val">{{ ratio.toFixed(1) }} : 1</span>
+        <input type="range" v-model.number="waterToDungRatio"
+               min="0.5" max="3.0" step="0.5" @input="saveSettings()">
+        <span class="sr-val">{{ waterToDungRatio.toFixed(1) }} : 1</span>
       </div>
-      <p class="sn">Parts water per part dung. SNV/BSP recommend 1:1. Use 2:1+ for fibrous feeds or cold weather.</p>
+      <p class="sn">Parts water per part dung (by weight). SNV/BSP recommend 1:1. Use 2:1+ for fibrous feeds or cold weather.</p>
     </div>
+
     <hr class="sdiv">
-    <!-- Custom digester -->
+
+    <!-- Custom digester specification -->
     <div class="sg sfull">
       <label>Custom digester size</label>
-      <p class="sn" style="margin-top:0;margin-bottom:.6rem">Define your own digester if it doesn't match the preset sizes. Select "Custom" in the digester buttons to use these values.</p>
+      <p class="sn" style="margin-top:0;margin-bottom:.6rem">
+        Define your own digester if it doesn't match the preset sizes.
+        Select "Custom" in the digester buttons above to use these values.
+      </p>
       <div class="s2col" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr))">
         <div>
           <div class="slbl">Volume (m³)</div>
-          <input type="number" v-model.number="cDig.vol" min="1" max="200" step="1" @input="save()">
+          <input type="number" v-model.number="customDigester.volumeM3"
+                 min="1" max="200" step="1" @input="saveSettings()">
         </div>
         <div>
-          <div class="slbl">Optimal loading min (kg/day)</div>
-          <input type="number" v-model.number="cDig.oMin" min="1" max="300" step="1" @input="save()">
+          <div class="slbl">Optimal loading — min (kg/day)</div>
+          <input type="number" v-model.number="customDigester.optimalLoadMin"
+                 min="1" max="300" step="1" @input="saveSettings()">
         </div>
         <div>
-          <div class="slbl">Optimal loading max (kg/day)</div>
-          <input type="number" v-model.number="cDig.oMax" min="1" max="300" step="1" @input="save()">
+          <div class="slbl">Optimal loading — max (kg/day)</div>
+          <input type="number" v-model.number="customDigester.optimalLoadMax"
+                 min="1" max="300" step="1" @input="saveSettings()">
         </div>
         <div>
-          <div class="slbl">Max daily output (m³)</div>
-          <input type="number" v-model.number="cDig.maxP" min="0.1" max="50" step="0.1" @input="save()">
+          <div class="slbl">Max daily gas output (m³)</div>
+          <input type="number" v-model.number="customDigester.maxDailyOutputM3"
+                 min="0.1" max="50" step="0.1" @input="saveSettings()">
         </div>
       </div>
     </div>
-  </div>
-</div>
 
+  </div>
+</div><!-- /settings panel -->
+
+<!-- ═══════════════════════════════════════════════
+     MAIN CONTENT
+     ═══════════════════════════════════════════════ -->
 <div class="main">
 
-<!-- INPUTS -->
-<div class="card">
-  <p class="ctitle">🐄 Your inputs</p>
+  <!-- ── INPUTS CARD ── -->
+  <div class="card">
+    <p class="ctitle">🐄 Your inputs</p>
 
-  <div class="field">
-    <label class="flbl">Digester size</label>
-    <div class="tg3">
-      <button v-for="(d,i) in DIG" :key="i" class="tbtn" :class="{on: selDig===i}" @click="selDig=i">
-        {{ d.lbl }}<small>{{ d.lv }}</small>
-      </button>
-      <button class="tbtn" :class="{on: selDig===3}" @click="selDig=3">
-        Custom<small>set in ⚙</small>
-      </button>
-    </div>
-  </div>
-
-  <div class="field">
-    <label class="flbl">Cow dung fed per day (kg)</label>
-    <div class="sl-row">
-      <input type="range" v-model.number="dungKg" min="5" max="120" step="1">
-      <span class="sl-val">{{ dungKg }} kg</span>
-    </div>
-    <div class="zbar">
-      <div class="zbar-in">
-        <div class="zlo" :style="zs('lo')"></div>
-        <div class="zok" :style="zs('ok')"></div>
-        <div class="zhi" :style="zs('hi')"></div>
+    <!-- Digester size selection -->
+    <div class="field">
+      <label class="flbl">Digester size</label>
+      <div class="tg4">
+        <button v-for="(digester, index) in PRESET_DIGESTERS" :key="index"
+          class="tbtn" :class="{ on: selectedDigesterIndex === index }"
+          @click="selectedDigesterIndex = index">
+          {{ digester.label }}<small>{{ digester.livestock }}</small>
+        </button>
+        <button class="tbtn" :class="{ on: selectedDigesterIndex === 3 }"
+          @click="selectedDigesterIndex = 3">
+          Custom<small>set in ⚙</small>
+        </button>
       </div>
-      <div class="zptr" :style="zs('pt')"></div>
     </div>
-    <div class="zlbls">
-      <span>5 kg</span><span class="opt">Optimal {{ dig.oMin }}–{{ dig.oMax }} kg/day</span><span>120 kg</span>
-    </div>
-    <span class="lbadge" :class="'b'+eff.cls">
-      {{ eff.cls==='ok'?'✓':eff.cls==='lo'?'↓':'⚠' }} {{ eff.label }}
-    </span>
-  </div>
 
-  <div class="field">
-    <label class="flbl">Stove type</label>
-    <div class="tg2">
-      <button class="tbtn" :class="{on:stoves===1}" @click="stoves=1">Single stove<small>{{ rSingle.toFixed(2) }} m³/hr</small></button>
-      <button class="tbtn" :class="{on:stoves===2}" @click="stoves=2">Double stove<small>{{ rDouble.toFixed(2) }} m³/hr</small></button>
-    </div>
-  </div>
-
-  <div class="field">
-    <label class="flbl">Hours cooking per day</label>
-    <div class="sl-row">
-      <input type="range" v-model.number="cookHrs" min="0.5" max="10" step="0.5">
-      <span class="sl-val">{{ cookHrs.toFixed(1) }} hrs</span>
-    </div>
-  </div>
-
-  <!-- Slurry summary — close to inputs -->
-  <div class="slurry">
-    <strong>🪣 {{ bpd }} bucket{{ bpd!==1?'s':'' }} of mixed slurry per day</strong> ({{ slurryL }} L total)<br>
-    Mix the dung and water together in your bucket first — each {{ bucketL }}-litre bucket holds the ready-mixed slurry you carry to the digester inlet.
-    At {{ ratio.toFixed(1) }}:1 water:dung, each bucket is roughly
-    <strong>{{ (bucketL/(1+ratio)).toFixed(1) }} kg dung + {{ (bucketL*ratio/(1+ratio)).toFixed(1) }} L water</strong>.
-    <span v-if="ratio<0.75" class="mwarn"> ⚠ Very thick — risk of blockages. Increase water ratio in ⚙ Settings.</span>
-    <span v-else-if="ratio>2.0" class="minfo"> ℹ Thin mix — may reduce hydraulic retention time.</span>
-  </div>
-</div>
-
-<!-- RESULTS -->
-<div class="card">
-  <p class="ctitle">📊 Daily balance</p>
-  <div class="mets">
-    <div class="met">
-      <p class="met-lbl">Production</p>
-      <p class="met-val">{{ prod.toFixed(2) }}</p>
-      <p class="met-unit">m³/day</p>
-      <p class="met-sub" v-if="prodSub">{{ prodSub }}</p>
-    </div>
-    <div class="met">
-      <p class="met-lbl">Cooking use</p>
-      <p class="met-val">{{ cookUse.toFixed(2) }}</p>
-      <p class="met-unit">m³/day</p>
-    </div>
-    <div class="met" :class="ss">
-      <p class="met-lbl">Surplus</p>
-      <p class="met-val">{{ surplus.toFixed(2) }}</p>
-      <p class="met-unit">m³/day</p>
-    </div>
-  </div>
-  <div class="bwrap">
-    <div class="blbls">
-      <span>Cooking</span>
-      <span v-if="surplus>=0">{{ surpct }}% surplus</span>
-      <span v-else>{{ Math.abs(Math.round((surplus/prod)*100)) }}% shortfall</span>
-      <span>Surplus</span>
-    </div>
-    <div class="btrack">
-      <div class="bcook" :style="'width:'+cpct+'%'"></div>
-      <div class="bsurp" :class="ss" :style="'left:'+cpct+'%;width:'+spct+'%'"></div>
-    </div>
-  </div>
-  <div class="effbox" v-if="eff.why"><strong>Why {{ Math.round(eff.f*100) }}% efficiency?</strong>{{ eff.why }}</div>
-  <div class="snote" :class="ss">
-    <span v-if="ss==='bad'">Cooking demand ({{ cookUse.toFixed(2) }} m³/day) exceeds production ({{ prod.toFixed(2) }} m³/day). Try feeding more dung, reducing hours, or switching to a single stove.</span>
-    <span v-else-if="ss==='warn'">Marginal surplus of {{ surplus.toFixed(2) }} m³/day. Small adjustments could unlock productive use options.</span>
-    <span v-else>You have {{ surplus.toFixed(2) }} m³/day of surplus — {{ annS }} m³/year — going unused. See below what it could power.</span>
-  </div>
-  <div class="mets" style="margin-bottom:0">
-    <div class="met"><p class="met-lbl">Annual surplus</p><p class="met-val">{{ annS }}</p><p class="met-unit">m³/year</p></div>
-    <div class="met"><p class="met-lbl">Extra cooking</p><p class="met-val">{{ extHrs }}</p><p class="met-unit">hrs/year</p></div>
-    <div class="met"><p class="met-lbl">Efficiency</p><p class="met-val">{{ Math.round(eff.f*100) }}%</p><p class="met-unit">{{ eff.label }}</p></div>
-  </div>
-  <p class="srcnote">Production = dung × {{ biogasYield }} m³/kg × efficiency (Gurung 1997 / SNV BSP). Water in the mix is a carrier — biogas comes from organic matter in the dung. Stove rates editable in ⚙ Settings.</p>
-</div>
-
-<!-- DIGESTER TABLE -->
-<div class="card">
-  <p class="ctitle">🏗️ Digester reference</p>
-  <div class="tscroll">
-    <table class="dt">
-      <thead><tr><th>Size</th><th>Optimal loading</th><th>Max output</th><th>HRT</th><th>Your loading</th></tr></thead>
-      <tbody>
-        <tr v-for="(d,i) in allDig" :key="i" :class="{sel: selDig===i||(selDig===3&&i===3)}">
-          <td>{{ d.lbl }}<span class="stag" v-if="selDig===i||(selDig===3&&i===3)">selected</span></td>
-          <td>{{ d.oMin }}–{{ d.oMax }} kg/day</td>
-          <td>{{ d.maxP.toFixed(1) }} m³/day</td>
-          <td>{{ d.hrt }}</td>
-          <td><span class="pill" :class="dpill(d).c">{{ dungKg }} kg — {{ dpill(d).l }}</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="srcnote">Optimal loading from 30–40 day HRT for mesophilic fixed-dome digesters (Gurung 1997; SNV/BSP). Below ~25 days HRT, incomplete digestion reduces gas yield and pathogen kill.</p>
-</div>
-
-<!-- PRODUCTIVE USES -->
-<div class="card">
-  <p class="ctitle">⚡ What could your surplus power? <span style="font-size:.74rem;font-weight:400;color:var(--mu)">(tap a card for details)</span></p>
-  <div class="ugrid">
-    <div v-for="(u,i) in USES" :key="u.n"
-      class="ucard" :class="[ucls(u), {sel: expanded===u.n}]"
-      @click="expanded = expanded===u.n ? null : u.n">
-      <div class="utop">
-        <span class="uname">
-          {{ u.ic }} {{ u.n }}
-          <span class="chv" :class="{open: expanded===u.n}">▼</span>
-        </span>
-        <span class="ubadge" :class="'ub'+ubadge(u).c">{{ ubadge(u).t }}</span>
+    <!-- Dung input slider -->
+    <div class="field">
+      <label class="flbl">Cow dung fed per day (kg)</label>
+      <div class="sl-row">
+        <input type="range" v-model.number="dungKgPerDay" min="5" max="120" step="1">
+        <span class="sl-val">{{ dungKgPerDay }} kg</span>
       </div>
-      <p class="udet">Needs {{ u.nl }}</p>
-      <p class="udet">{{ u.dc }}</p>
-    </div>
-  </div>
-  <!-- Single expansion panel below grid — shows whichever card is selected -->
-  <div class="uexp" :class="{open: expanded !== null}">
-    <div v-for="u in USES" :key="u.n+'_e'">
-      <div class="uexp-grid" v-if="u.n===expanded">
-        <div><p class="exp-lbl">⚙ Setup</p><p class="exp-val">{{ u.detail.setup }}</p></div>
-        <div><p class="exp-lbl">💰 Costs (East Africa)</p><p class="exp-val">{{ u.detail.cost }}</p></div>
-        <div><p class="exp-lbl">📈 Economics</p><p class="exp-val">{{ u.detail.economics }}</p></div>
-        <div><p class="exp-lbl">💡 Tip</p><p class="exp-val">{{ u.detail.tip }}</p></div>
+      <!-- Colour-coded optimal loading zone bar -->
+      <div class="zbar">
+        <div class="zbar-in">
+          <div class="zlo" :style="zoneBarSegment('underloaded')"></div>
+          <div class="zok" :style="zoneBarSegment('optimal')"></div>
+          <div class="zhi" :style="zoneBarSegment('overloaded')"></div>
+        </div>
+        <div class="zptr" :style="zoneBarSegment('pointer')"></div>
       </div>
-  </div>
-  <p class="srcnote">Brooder 0.3 m³/hr × 24 hrs; fodder chopper ~0.4 m³/hr × 2 hrs; food dryer 0.5 m³/hr; water heating 0.5 m³/day; lighting ~0.2 m³/evening. Warnars &amp; Oppenoorth (2014) SNV/Hivos.</p>
-</div>
+      <div class="zlbls">
+        <span>5 kg</span>
+        <span class="opt">Optimal {{ activeDigester.optimalLoadMin }}–{{ activeDigester.optimalLoadMax }} kg/day</span>
+        <span>120 kg</span>
+      </div>
+      <span class="lbadge" :class="'b' + loadingEfficiency.badgeClass">
+        {{ loadingEfficiency.badgeClass === 'ok' ? '✓' : loadingEfficiency.badgeClass === 'lo' ? '↓' : '⚠' }}
+        {{ loadingEfficiency.label }}
+      </span>
+    </div>
 
-<!-- BEYOND -->
-<div class="card">
-  <p class="ctitle">💡 Think beyond the examples</p>
-  <p style="font-size:.84rem;color:var(--tx2);margin-bottom:.85rem">If a process runs on LPG, propane, or any gas flame — it can almost certainly run on biogas with simple modifications (typically just a larger burner jet). Use these as conversation starters with your trainer.</p>
-  <div class="bgrid">
-    <div v-for="b in BEYOND" :key="b.t" class="bcard" :class="{sp:b.sp}">
-      <p class="btitle">{{ b.t }}</p>
-      <p class="bsub">{{ b.s }}</p>
+    <!-- Stove type selection -->
+    <div class="field">
+      <label class="flbl">Stove type</label>
+      <div class="tg2">
+        <button class="tbtn" :class="{ on: numberOfStoves === 1 }" @click="numberOfStoves = 1">
+          Single stove<small>{{ singleStoveRate.toFixed(2) }} m³/hr</small>
+        </button>
+        <button class="tbtn" :class="{ on: numberOfStoves === 2 }" @click="numberOfStoves = 2">
+          Double stove<small>{{ doubleStoveRate.toFixed(2) }} m³/hr</small>
+        </button>
+      </div>
+    </div>
+
+    <!-- Daily cooking hours slider -->
+    <div class="field">
+      <label class="flbl">Hours cooking per day</label>
+      <div class="sl-row">
+        <input type="range" v-model.number="cookingHoursPerDay" min="0.5" max="10" step="0.5">
+        <span class="sl-val">{{ cookingHoursPerDay.toFixed(1) }} hrs</span>
+      </div>
+    </div>
+
+    <!-- Slurry & bucket summary -->
+    <div class="slurry">
+      <strong>🪣 {{ bucketsOfSlurryPerDay }} bucket{{ bucketsOfSlurryPerDay !== 1 ? 's' : '' }} of mixed slurry per day</strong>
+      ({{ totalSlurryLitresPerDay }} L total)<br>
+      Mix the dung and water together in your bucket first — each {{ bucketSizeLitres }}-litre bucket holds the
+      ready-mixed slurry you carry to the digester inlet.
+      At {{ waterToDungRatio.toFixed(1) }}:1 water:dung, each bucket is roughly
+      <strong>{{ (bucketSizeLitres / (1 + waterToDungRatio)).toFixed(1) }} kg dung
+            + {{ (bucketSizeLitres * waterToDungRatio / (1 + waterToDungRatio)).toFixed(1) }} L water</strong>.
+      <span v-if="waterToDungRatio < 0.75" class="mwarn">
+        ⚠ Very thick mix — risk of inlet blockages. Increase water ratio in ⚙ Settings.
+      </span>
+      <span v-else-if="waterToDungRatio > 2.0" class="minfo">
+        ℹ Thin mix — may reduce hydraulic retention time slightly.
+      </span>
+    </div>
+  </div><!-- /inputs card -->
+
+  <!-- ── RESULTS CARD ── -->
+  <div class="card">
+    <p class="ctitle">📊 Daily balance</p>
+
+    <!-- Top three headline numbers -->
+    <div class="mets">
+      <div class="met">
+        <p class="met-lbl">Production</p>
+        <p class="met-val">{{ dailyProductionM3.toFixed(2) }}</p>
+        <p class="met-unit">m³/day</p>
+        <!-- Show cap / efficiency note if applicable -->
+        <p class="met-sub" v-if="productionCapNote">{{ productionCapNote }}</p>
+      </div>
+      <div class="met">
+        <p class="met-lbl">Cooking use</p>
+        <p class="met-val">{{ dailyCookingUseM3.toFixed(2) }}</p>
+        <p class="met-unit">m³/day</p>
+      </div>
+      <div class="met" :class="surplusStatus">
+        <p class="met-lbl">Surplus</p>
+        <p class="met-val">{{ dailySurplusM3.toFixed(2) }}</p>
+        <p class="met-unit">m³/day</p>
+      </div>
+    </div>
+
+    <!-- Production vs cooking stacked bar -->
+    <div class="bwrap">
+      <div class="blbls">
+        <span>Cooking</span>
+        <span v-if="dailySurplusM3 >= 0">{{ surplusAsPercentOfProduction }}% surplus</span>
+        <span v-else>{{ Math.abs(Math.round((dailySurplusM3 / dailyProductionM3) * 100)) }}% shortfall</span>
+        <span>Surplus</span>
+      </div>
+      <div class="btrack">
+        <div class="bcook" :style="'width:' + cookingBarWidthPct + '%'"></div>
+        <div class="bsurp" :class="surplusStatus"
+             :style="'left:' + cookingBarWidthPct + '%; width:' + surplusBarWidthPct + '%'"></div>
+      </div>
+    </div>
+
+    <!-- Explain efficiency factor if digester isn't optimally loaded -->
+    <div class="effbox" v-if="loadingEfficiency.explanation">
+      <strong>Why {{ Math.round(loadingEfficiency.factor * 100) }}% efficiency?</strong>
+      {{ loadingEfficiency.explanation }}
+    </div>
+
+    <!-- Plain-language summary -->
+    <div class="snote" :class="surplusStatus">
+      <span v-if="surplusStatus === 'bad'">
+        Cooking demand ({{ dailyCookingUseM3.toFixed(2) }} m³/day) exceeds production
+        ({{ dailyProductionM3.toFixed(2) }} m³/day). Try feeding more dung, reducing hours,
+        or switching to a single stove.
+      </span>
+      <span v-else-if="surplusStatus === 'warn'">
+        Marginal surplus of {{ dailySurplusM3.toFixed(2) }} m³/day.
+        Small adjustments could unlock productive use options.
+      </span>
+      <span v-else>
+        You have {{ dailySurplusM3.toFixed(2) }} m³/day of surplus —
+        {{ annualSurplusM3 }} m³/year — going unused. See below what it could power.
+      </span>
+    </div>
+
+    <!-- Annual summary metrics -->
+    <div class="mets" style="margin-bottom:0">
+      <div class="met">
+        <p class="met-lbl">Annual surplus</p>
+        <p class="met-val">{{ annualSurplusM3 }}</p>
+        <p class="met-unit">m³/year</p>
+      </div>
+      <div class="met">
+        <p class="met-lbl">Extra cooking hrs</p>
+        <p class="met-val">{{ extraCookingHoursPerYear }}</p>
+        <p class="met-unit">hrs/year</p>
+      </div>
+      <div class="met">
+        <p class="met-lbl">Efficiency</p>
+        <p class="met-val">{{ Math.round(loadingEfficiency.factor * 100) }}%</p>
+        <p class="met-unit">{{ loadingEfficiency.label }}</p>
+      </div>
+    </div>
+
+    <p class="srcnote">
+      Production = dung × {{ biogasYieldPerKg }} m³/kg × efficiency factor (Gurung 1997 / SNV BSP).
+      Water in the mix is a carrier — biogas comes from organic matter in the dung.
+      Stove rates are editable in ⚙ Settings.
+    </p>
+  </div><!-- /results card -->
+
+  <!-- ── DIGESTER REFERENCE TABLE ── -->
+  <div class="card">
+    <p class="ctitle">🏗️ Digester reference</p>
+    <div class="tscroll">
+      <table class="dt">
+        <thead>
+          <tr>
+            <th>Size</th><th>Optimal loading</th><th>Max output</th>
+            <th>HRT</th><th>Your loading</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(digester, index) in allDigesters" :key="index"
+            :class="{ sel: selectedDigesterIndex === index || (selectedDigesterIndex === 3 && index === 3) }">
+            <td>
+              {{ digester.label }}
+              <span class="stag"
+                v-if="selectedDigesterIndex === index || (selectedDigesterIndex === 3 && index === 3)">
+                selected
+              </span>
+            </td>
+            <td>{{ digester.optimalLoadMin }}–{{ digester.optimalLoadMax }} kg/day</td>
+            <td>{{ digester.maxDailyOutputM3.toFixed(1) }} m³/day</td>
+            <td>{{ digester.hrt }}</td>
+            <td>
+              <span class="pill" :class="getLoadingPillStyle(digester).cssClass">
+                {{ dungKgPerDay }} kg — {{ getLoadingPillStyle(digester).label }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="srcnote">
+      Optimal loading from 30–40 day hydraulic retention time (HRT) for mesophilic fixed-dome
+      digesters (Gurung 1997; SNV/BSP). Below ~25 days HRT, incomplete digestion reduces
+      gas yield and pathogen kill in the bio-slurry.
+    </p>
+  </div>
+
+  <!-- ── PRODUCTIVE USES CARD ── -->
+  <div class="card">
+    <p class="ctitle">
+      ⚡ What could your surplus power?
+      <span style="font-size:.74rem;font-weight:400;color:var(--mu)">(tap a card for details)</span>
+    </p>
+
+    <div class="ugrid">
+      <div v-for="use in PRODUCTIVE_USES" :key="use.name"
+        class="ucard"
+        :class="[getUseSurplusClass(use), { sel: expandedUse === use.name }]"
+        @click="expandedUse = expandedUse === use.name ? null : use.name">
+        <div class="utop">
+          <span class="uname">
+            {{ use.icon }} {{ use.name }}
+            <span class="chv" :class="{ open: expandedUse === use.name }">▼</span>
+          </span>
+          <span class="ubadge" :class="'ub' + getUseBadge(use).cssClass">
+            {{ getUseBadge(use).label }}
+          </span>
+        </div>
+        <p class="udet">Needs {{ use.dailyNeedLabel }}</p>
+        <p class="udet">{{ use.shortDescription }}</p>
+      </div>
+    </div>
+
+    <!-- Single expandable detail panel, shown below the grid -->
+    <div class="uexp" :class="{ open: expandedUse !== null }">
+      <div v-for="use in PRODUCTIVE_USES" :key="use.name + '_detail'">
+        <div class="uexp-grid" v-if="use.name === expandedUse">
+          <div><p class="exp-lbl">⚙ Setup</p>          <p class="exp-val">{{ use.detail.setup }}</p></div>
+          <div><p class="exp-lbl">💰 Costs (East Africa)</p> <p class="exp-val">{{ use.detail.cost }}</p></div>
+          <div><p class="exp-lbl">📈 Economics</p>      <p class="exp-val">{{ use.detail.economics }}</p></div>
+          <div><p class="exp-lbl">💡 Tip</p>            <p class="exp-val">{{ use.detail.tip }}</p></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="srcnote">
+      Brooder 0.3 m³/hr × 24 hrs; fodder chopper ~0.4 m³/hr × 2 hrs; food dryer 0.5 m³/hr;
+      water heating 0.5 m³/day; lighting ~0.2 m³/evening.
+      Warnars &amp; Oppenoorth (2014) SNV/Hivos.
+    </p>
+  </div>
+
+  <!-- ── THINK BEYOND CARD ── -->
+  <div class="card">
+    <p class="ctitle">💡 Think beyond the examples</p>
+    <p style="font-size:.84rem;color:var(--tx2);margin-bottom:.85rem">
+      If a process runs on LPG, propane, or any gas flame — it can almost certainly run on
+      biogas with simple modifications. Use these as conversation starters with your trainer.
+    </p>
+    <div class="bgrid">
+      <div v-for="card in BEYOND_THE_EXAMPLES" :key="card.title"
+        class="bcard" :class="{ sp: card.highlighted }">
+        <p class="btitle">{{ card.title }}</p>
+        <p class="bsub">{{ card.description }}</p>
+      </div>
     </div>
   </div>
-</div>
 
-</div><!-- /.main -->
+</div><!-- /main -->
+
 <footer>
-  Built for smallholder biogas farmers in East &amp; Southern Africa. &nbsp;
+  Built for smallholder biogas farmers in East &amp; Southern Africa.&nbsp;
   Data: Gurung (1997) BSP/SNV · Warnars &amp; Oppenoorth (2014) SNV/Hivos.<br>
-  <a href="https://github.com/tern360/biogas-calculator" target="_blank" rel="noopener">GitHub</a> &nbsp;·&nbsp;
-  <a href="https://tern360.co.uk" target="_blank" rel="noopener">Tern360</a> / CREATIVenergie — MIT Licence
+  <a href="https://github.com/tern360/biogas-calculator" target="_blank" rel="noopener">GitHub</a>
+  &nbsp;·&nbsp;
+  <a href="https://tern360.co.uk" target="_blank" rel="noopener">Tern360</a>
+  / CREATIVenergie — MIT Licence
 </footer>
 </div><!-- /v-scope -->
 
@@ -519,155 +742,448 @@ footer{text-align:center;font-size:.71rem;color:var(--mu);padding:1.5rem 1rem;bo
 <script>
 function App() {
   return {
-    isDark: true,
-    showSet: false,
-    // settings
-    biogasYield: 0.040,
-    rSingle: 0.30,
-    rDouble: 0.60,
-    bucketL: 5,
-    ratio: 1.0,
-    // inputs
-    selDig: 1,
-    stoves: 1,
-    dungKg: 25,
-    cookHrs: 4,
-    cDig: { vol:16, oMin:45, oMax:65, maxP:2.8 },
-    expanded: null,
 
-    YCHIPS:[
-      {v:0.030,l:"0.030 — old dung"},{v:0.040,l:"0.040 — cow (default)"},
-      {v:0.050,l:"0.050 — fresh cow"},{v:0.060,l:"0.060 — chicken"},{v:0.065,l:"0.065 — pig"},
-    ],
-    FEEDS:[
-      {n:"Cow dung (fresh wet)",      y:"0.040 m³/kg",      d:"Standard field value — Gurung (1997) / SNV BSP. Most common in East Africa."},
-      {n:"Cow dung (old/stored)",      y:"0.028–0.033 m³/kg",d:"Dried dung loses volatile solids. Use 0.030 as conservative estimate."},
-      {n:"Pig dung",                   y:"0.060–0.070 m³/kg",d:"Higher volatile-solid content than cattle. 0.065 is reliable mid-range."},
-      {n:"Chicken / poultry manure",   y:"0.055–0.065 m³/kg",d:"High nitrogen — risk of ammonia inhibition. Co-digest with crop waste."},
-      {n:"Vegetable / crop waste",     y:"0.050–0.080 m³/kg",d:"Highly variable: leafy greens ~0.05, fruit waste ~0.08. Short HRT."},
-      {n:"Veg waste + cow dung 50:50", y:"0.045–0.055 m³/kg",d:"Good co-digest — crop waste adds carbon, dung provides microbial seed."},
-      {n:"Food scraps",                y:"0.080–0.120 m³/kg",d:"High yield but prone to acidification. Add dung as buffer (≥30%)."},
-      {n:"Water hyacinth",             y:"0.020–0.040 m³/kg",d:"Abundant near Lake Victoria. Pre-chop and wilt to improve digestibility."},
-    ],
-    DIG:[
-      {lbl:"6 m³",  oMin:15,oMax:28,maxP:1.12,hrt:"~35 days",lv:"~1–2 cattle"},
-      {lbl:"8 m³",  oMin:20,oMax:38,maxP:1.52,hrt:"~35 days",lv:"~2–3 cattle"},
-      {lbl:"12 m³", oMin:30,oMax:55,maxP:2.20,hrt:"~35 days",lv:"~3–5 cattle"},
-    ],
-    USES:[
-      {n:"Chicken brooder",    ic:"🐔",need:7.2,nl:"7.2 m³/day (24 hr)",    dc:"Constant warmth for day-old chicks",q:"chicken brooding using biogas",
-        detail:{setup:"Insulated box (1–2 m²) with a low-pressure biogas infra-red burner. Maintain 32–35°C weeks 1–2, reducing to 27°C by week 4. Typical batch: 50–100 chicks.",cost:"Box: $10–30. Biogas IR burner: $15–40. Regulator + pipe: $10–20. Total ~$40–80 — no fuel cost if gas is surplus.",economics:"At $3–5 saved per chick vs charcoal, a 100-chick batch saves $300–500. Equipment payback in 1–2 batches. Needs 12 m³ digester at good loading.",tip:"Run when cooking demand is lowest. A timer valve automates this. Stage batches to match surplus — avoid brooding in dry-season months when dung input drops."}},
-      {n:"Food dryer (night)", ic:"🌙",need:7.2,nl:"7.2 m³/night (12 hr)",  dc:"Overnight coffee, maize, fish",q:"overnight food drying using biogas",
-        detail:{setup:"Cabinet or tunnel dryer (1–4 m²) with biogas burner and fan circulating air at 50–70°C. Galvanised mesh trays. Run overnight 8–12 hrs when cooking isn't competing for gas.",cost:"Fabricated dryer: $50–150. Biogas burner: $20–40. 12V fan: $15–30. Total ~$100–200.",economics:"Dried maize: 30–50% premium. Dried coffee: significant export uplift. Fish: perishable fresh vs weeks shelf life. Payback under one harvest season for high-value crops.",tip:"Overnight avoids competing with daytime cooking. Combine with solar day-dryer for 24-hr operation."}},
-      {n:"Food dryer (day)",   ic:"☀️",need:4.0,nl:"4.0 m³/day (8 hr)",    dc:"Daytime drying — combine with solar",q:"daytime food drying using biogas",
-        detail:{setup:"Same cabinet as night drying, running 8 hrs daytime. A thermostat switches the biogas burner in when solar-heated air drops below target — trialled successfully in East Africa.",cost:"$100–200 same as night dryer. Combined solar-biogas controller adds $20–50.",economics:"4 m³ demand suits 8 m³ digester at good loading. Drying 10 kg fresh fish to 2.5 kg dried = 4× price increase.",tip:"Thermostat can cut biogas use 40–60% on sunny days — the solar does the work, biogas just covers cloudy periods."}},
-      {n:"Fodder chopper",     ic:"🌿",need:0.8,nl:"~0.8 m³/day (2 hr)",   dc:"Convert petrol engine to biogas",q:"running a fodder chopper on biogas",
-        detail:{setup:"Existing petrol fodder chopper converted with a gas mixer/carburettor adapter. Or buy a dedicated 1–3 hp biogas engine. Chops Napier grass, maize stover, banana stems.",cost:"Conversion kit: $20–60. New 2 hp biogas engine: $150–300. Chopper head: $80–200. Conversion far cheaper if you own a petrol unit.",economics:"Chopping improves feed digestibility 20–30%, increasing biogas yield. Productivity gain can offset the gas used by the chopper.",tip:"Most accessible application — 0.8 m³/day achievable even with 6 m³ digester. Run same 2-hr session each morning."}},
-      {n:"Water heating",      ic:"💧",need:0.5,nl:"~0.5 m³/day",           dc:"Milk sterilisation, washing",q:"water heating for milk sterilisation",
-        detail:{setup:"Coil-type or immersion biogas water heater, or adapted geyser. 0.5 m³ heats ~20–30 L to 70–80°C — enough for milk churns, hand-washing, or a small shower.",cost:"Fabricated coil heater: $10–25. Adapted geyser: $30–80. Very low capital — easiest application to implement.",economics:"Grade A milk (properly sterilised) fetches Tsh 600–800/L vs Tsh 300–400 unsterilised. Even a small quality improvement pays back quickly.",tip:"Best first productive use if surplus is small (0.5–1.0 m³/day). Just a dedicated tap on the biogas line — no complex equipment."}},
-      {n:"Gas lighting",       ic:"💡",need:0.2,nl:"~0.2 m³/evening",       dc:"Early-morning work lighting",q:"biogas lighting for farm work",
-        detail:{setup:"Standard biogas mantle lamp — similar to a propane camping lantern. Good white light covering ~10–15 m². Multiple lamps from the same pipe.",cost:"Mantle lamp: $8–20. Replacement mantles: $0.50–1 each. Very low cost, trivial to install.",economics:"Replaces kerosene: saves $5–15/month per lamp. Payback in 1–3 months. Better light, no smoke, no soot on pots.",tip:"Lowest demand of any application — perfect first use when surplus is tiny. Run 4–6 am to extend working hours without touching cooking gas."}},
-    ],
-    BEYOND:[
-      {t:"🐟 Fish smoking / drying",     s:"High-value product near Lake Victoria. Consistent heat with no smoke taint — replaces firewood directly.",sp:false},
-      {t:"🍞 Bakery / food processing",  s:"Community service with steady heat demand. Any LPG oven or stove can run on biogas with a larger jet and regulator.",sp:false},
-      {t:"🐷 Pig / poultry pen heating", s:"Farrowing pens, hatcheries, piglet warmers. Any LPG heater adapts to biogas with a simple pressure regulator swap.",sp:false},
-      {t:"⚙️ Engine / generator",        s:"Grain milling, pumping, electricity. Petrol engines can dual-fuel on biogas with an inexpensive carburettor kit.",sp:false},
-      {t:"🌿 Herbs, spices & floristry", s:"Low, consistent drying temperatures (40–55°C) preserve quality. Commands premium prices in export markets.",sp:false},
-      {t:"🤝 Community biogas service",  s:"One large digester serving multiple households or small businesses — neighbours pay per bucket of gas collected.",sp:false},
-      {t:"✏️ My own idea",               s:"If an appliance can run on LPG, propane, or a gas flame — biogas can almost certainly power it, but the burner jet might need modifying to compensate for biogas's slightly lower calorific value and lower pressure. Talk to your trainer.",sp:true},
+    // ═══════════════════════════════════════════════
+    // UI STATE
+    // ═══════════════════════════════════════════════
+
+    isDark:       true,   // dark mode on by default
+    showSettings: false,  // settings panel collapsed by default
+    expandedUse:  null,   // name of the currently expanded use card (or null)
+
+    // ═══════════════════════════════════════════════
+    // SETTINGS  (persisted to localStorage)
+    // ═══════════════════════════════════════════════
+
+    biogasYieldPerKg: 0.040,  // m³ of gas produced per kg of wet feedstock (Gurung 1997 / SNV BSP)
+    singleStoveRate:  0.30,   // m³/hr consumed by a single-burner stove (SNV/BSP standard)
+    doubleStoveRate:  0.60,   // m³/hr consumed by a double-burner stove
+    bucketSizeLitres: 5,      // size of bucket used to carry mixed slurry to the digester
+    waterToDungRatio: 1.0,    // parts water per part dung by weight (1:1 is SNV/BSP recommendation)
+
+    // User-defined custom digester (used when selectedDigesterIndex === 3)
+    customDigester: {
+      volumeM3:          16,
+      optimalLoadMin:    45,
+      optimalLoadMax:    65,
+      maxDailyOutputM3:  2.8,
+    },
+
+    // ═══════════════════════════════════════════════
+    // INPUTS  (not persisted — reset each session)
+    // ═══════════════════════════════════════════════
+
+    selectedDigesterIndex: 1,   // index into PRESET_DIGESTERS (0–2) or 3 = custom
+    numberOfStoves:        1,   // 1 = single, 2 = double
+    dungKgPerDay:          25,  // kg of dung fed to digester each day
+    cookingHoursPerDay:    4,   // hours the stove is used per day
+
+    // ═══════════════════════════════════════════════
+    // REFERENCE DATA — feedstock yield chips
+    // ═══════════════════════════════════════════════
+
+    FEEDSTOCK_CHIPS: [
+      { value: 0.030, label: '0.030 — old dung'    },
+      { value: 0.040, label: '0.040 — cow (default)' },
+      { value: 0.050, label: '0.050 — fresh cow'   },
+      { value: 0.060, label: '0.060 — chicken'     },
+      { value: 0.065, label: '0.065 — pig'         },
     ],
 
-    // Getters
-    get dig() {
-      if (this.selDig === 3) {
-        const v = this.cDig;
-        return { lbl:`${v.vol} m³ (custom)`, oMin: v.oMin||1, oMax: v.oMax||2, maxP: v.maxP||0.5, hrt:"custom", lv:"custom" };
+    // ═══════════════════════════════════════════════
+    // REFERENCE DATA — feedstock table in settings
+    // ═══════════════════════════════════════════════
+
+    FEEDSTOCK_REFERENCE: [
+      { name: 'Cow dung (fresh wet)',       yield: '0.040 m³/kg',       notes: 'Standard field value — Gurung (1997) / SNV BSP. Most common in East Africa.' },
+      { name: 'Cow dung (old/stored)',       yield: '0.028–0.033 m³/kg', notes: 'Dried dung loses volatile solids. Use 0.030 as a conservative estimate.' },
+      { name: 'Pig dung',                    yield: '0.060–0.070 m³/kg', notes: 'Higher volatile-solid content than cattle. 0.065 is reliable mid-range.' },
+      { name: 'Chicken / poultry manure',    yield: '0.055–0.065 m³/kg', notes: 'High nitrogen — risk of ammonia inhibition. Co-digest with crop waste.' },
+      { name: 'Vegetable / crop waste',      yield: '0.050–0.080 m³/kg', notes: 'Highly variable: leafy greens ~0.05, fruit waste ~0.08. Short HRT.' },
+      { name: 'Veg waste + cow dung 50:50',  yield: '0.045–0.055 m³/kg', notes: 'Good co-digest — crop waste adds carbon, dung provides microbial seed.' },
+      { name: 'Food scraps',                 yield: '0.080–0.120 m³/kg', notes: 'High yield but prone to acidification. Add dung as buffer (≥30%).' },
+      { name: 'Water hyacinth',              yield: '0.020–0.040 m³/kg', notes: 'Abundant near Lake Victoria. Pre-chop and wilt to improve digestibility.' },
+    ],
+
+    // ═══════════════════════════════════════════════
+    // REFERENCE DATA — preset digester sizes
+    // ═══════════════════════════════════════════════
+
+    PRESET_DIGESTERS: [
+      { label: '6 m³',  optimalLoadMin: 15, optimalLoadMax: 28, maxDailyOutputM3: 1.12, hrt: '~35 days', livestock: '~1–2 cattle' },
+      { label: '8 m³',  optimalLoadMin: 20, optimalLoadMax: 38, maxDailyOutputM3: 1.52, hrt: '~35 days', livestock: '~2–3 cattle' },
+      { label: '12 m³', optimalLoadMin: 30, optimalLoadMax: 55, maxDailyOutputM3: 2.20, hrt: '~35 days', livestock: '~3–5 cattle' },
+    ],
+
+    // ═══════════════════════════════════════════════
+    // REFERENCE DATA — productive use applications
+    // ═══════════════════════════════════════════════
+
+    PRODUCTIVE_USES: [
+      {
+        name: 'Chicken brooder', icon: '🐔',
+        dailyNeedM3: 7.2, dailyNeedLabel: '7.2 m³/day (24 hr)',
+        shortDescription: 'Constant warmth for day-old chicks',
+        detail: {
+          setup:     'Insulated box (1–2 m²) with a low-pressure biogas infra-red burner. Maintain 32–35°C weeks 1–2, reducing to 27°C by week 4. Typical batch: 50–100 chicks.',
+          cost:      'Box: $10–30. Biogas IR burner: $15–40. Regulator + pipe: $10–20. Total ~$40–80 — no fuel cost if gas is surplus.',
+          economics: 'At $3–5 saved per chick vs charcoal, a 100-chick batch saves $300–500. Equipment payback in 1–2 batches. Needs 12 m³ digester at good loading.',
+          tip:       'Run when cooking demand is lowest. A timer valve automates this. Stage batches to match surplus — avoid brooding in dry-season months when dung input drops.',
+        },
+      },
+      {
+        name: 'Food dryer (night)', icon: '🌙',
+        dailyNeedM3: 7.2, dailyNeedLabel: '7.2 m³/night (12 hr)',
+        shortDescription: 'Overnight coffee, maize, fish',
+        detail: {
+          setup:     'Cabinet or tunnel dryer (1–4 m²) with biogas burner and fan circulating air at 50–70°C. Galvanised mesh trays. Run overnight 8–12 hrs when cooking isn\'t competing for gas.',
+          cost:      'Fabricated dryer: $50–150. Biogas burner: $20–40. 12V fan: $15–30. Total ~$100–200.',
+          economics: 'Dried maize: 30–50% premium. Dried coffee: significant export uplift. Fish: perishable fresh vs weeks shelf life. Payback under one harvest season for high-value crops.',
+          tip:       'Overnight avoids competing with daytime cooking. Combine with solar day-dryer for 24-hr operation.',
+        },
+      },
+      {
+        name: 'Food dryer (day)', icon: '☀️',
+        dailyNeedM3: 4.0, dailyNeedLabel: '4.0 m³/day (8 hr)',
+        shortDescription: 'Daytime drying — combine with solar',
+        detail: {
+          setup:     'Same cabinet as night drying, running 8 hrs daytime. A thermostat switches the biogas burner in when solar-heated air drops below target — trialled successfully in East Africa.',
+          cost:      '$100–200 same as night dryer. Combined solar-biogas controller adds $20–50.',
+          economics: '4 m³ demand suits 8 m³ digester at good loading. Drying 10 kg fresh fish to 2.5 kg dried = 4× price increase.',
+          tip:       'Thermostat can cut biogas use 40–60% on sunny days — solar does the work, biogas covers cloudy periods.',
+        },
+      },
+      {
+        name: 'Fodder chopper', icon: '🌿',
+        dailyNeedM3: 0.8, dailyNeedLabel: '~0.8 m³/day (2 hr)',
+        shortDescription: 'Convert petrol engine to biogas',
+        detail: {
+          setup:     'Existing petrol fodder chopper converted with a gas mixer/carburettor adapter. Or buy a dedicated 1–3 hp biogas engine. Chops Napier grass, maize stover, banana stems.',
+          cost:      'Conversion kit: $20–60. New 2 hp biogas engine: $150–300. Chopper head: $80–200. Conversion far cheaper if you own a petrol unit.',
+          economics: 'Chopping improves feed digestibility 20–30%, increasing biogas yield. Productivity gain can offset the gas used by the chopper.',
+          tip:       'Most accessible application — 0.8 m³/day achievable even with a 6 m³ digester. Run the same 2-hr session each morning.',
+        },
+      },
+      {
+        name: 'Water heating', icon: '💧',
+        dailyNeedM3: 0.5, dailyNeedLabel: '~0.5 m³/day',
+        shortDescription: 'Milk sterilisation, washing',
+        detail: {
+          setup:     'Coil-type or immersion biogas water heater, or adapted geyser. 0.5 m³ heats ~20–30 L to 70–80°C — enough for milk churns, hand-washing, or a small shower.',
+          cost:      'Fabricated coil heater: $10–25. Adapted geyser: $30–80. Very low capital — easiest application to implement immediately.',
+          economics: 'Grade A milk (properly sterilised) fetches Tsh 600–800/L vs Tsh 300–400 unsterilised. Even a small quality improvement pays back quickly.',
+          tip:       'Best first productive use if surplus is small (0.5–1.0 m³/day). Just a dedicated tap on the biogas line — no complex equipment.',
+        },
+      },
+      {
+        name: 'Gas lighting', icon: '💡',
+        dailyNeedM3: 0.2, dailyNeedLabel: '~0.2 m³/evening',
+        shortDescription: 'Early-morning work lighting',
+        detail: {
+          setup:     'Standard biogas mantle lamp — similar to a propane camping lantern. Good white light covering ~10–15 m². Multiple lamps can run from the same pipe.',
+          cost:      'Mantle lamp: $8–20. Replacement mantles: $0.50–1 each. Very low cost, trivial to install.',
+          economics: 'Replaces kerosene: saves $5–15/month per lamp. Payback in 1–3 months. Better light, no smoke, no soot on pots.',
+          tip:       'Lowest gas demand of any application — perfect first use when surplus is tiny. Run 4–6 am to extend working hours without touching cooking gas.',
+        },
+      },
+    ],
+
+    // ═══════════════════════════════════════════════
+    // REFERENCE DATA — "think beyond" idea cards
+    // ═══════════════════════════════════════════════
+
+    BEYOND_THE_EXAMPLES: [
+      { title: '🐟 Fish smoking / drying',      highlighted: false, description: 'High-value product near Lake Victoria. Consistent heat with no smoke taint — replaces firewood directly.' },
+      { title: '🍞 Bakery / food processing',   highlighted: false, description: 'Community service with steady heat demand. Any LPG oven or stove can run on biogas with a larger jet and regulator.' },
+      { title: '🐷 Pig / poultry pen heating',  highlighted: false, description: 'Farrowing pens, hatcheries, piglet warmers. Any LPG heater adapts to biogas with a simple pressure regulator swap.' },
+      { title: '⚙️ Engine / generator',          highlighted: false, description: 'Grain milling, pumping, electricity. Petrol engines can dual-fuel on biogas with an inexpensive carburettor kit.' },
+      { title: '🌿 Herbs, spices & floristry',  highlighted: false, description: 'Low, consistent drying temperatures (40–55°C) preserve quality and command premium prices in export markets.' },
+      { title: '🤝 Community biogas service',   highlighted: false, description: 'One large digester serving multiple households or businesses — neighbours pay per bucket of gas collected.' },
+      {
+        title: '✏️ My own idea', highlighted: true,
+        description: 'If an appliance can run on LPG, propane, or a gas flame — biogas can almost certainly power it, but the burner jet might need modifying to compensate for biogas\'s slightly lower calorific value and lower pressure. Talk to your trainer.',
+      },
+    ],
+
+    // ═══════════════════════════════════════════════
+    // COMPUTED GETTERS
+    // ═══════════════════════════════════════════════
+
+    /**
+     * The currently active digester spec — either a preset or the custom values.
+     * All calculations use this object so there's one source of truth.
+     */
+    get activeDigester() {
+      if (this.selectedDigesterIndex === 3) {
+        const c = this.customDigester;
+        return {
+          label:              `${c.volumeM3} m³ (custom)`,
+          optimalLoadMin:     c.optimalLoadMin || 1,
+          optimalLoadMax:     c.optimalLoadMax || 2,
+          maxDailyOutputM3:   c.maxDailyOutputM3 || 0.5,
+          hrt:                'custom',
+          livestock:          'custom',
+        };
       }
-      return this.DIG[this.selDig];
+      return this.PRESET_DIGESTERS[this.selectedDigesterIndex];
     },
-    get allDig() {
-      return [...this.DIG, { lbl:`${this.cDig.vol} m³ (custom)`, oMin:this.cDig.oMin||1, oMax:this.cDig.oMax||2, maxP:this.cDig.maxP||0.5, hrt:"—", lv:"custom" }];
-    },
-    get eff() {
-      const mid = (this.dig.oMin + this.dig.oMax) / 2, r = this.dungKg / mid;
-      if (r < 0.50) return {f:.75,cls:"hi",label:"Very underloaded",why:` Only ${this.dungKg} kg/day into a ${this.dig.lbl} digester (optimal ${this.dig.oMin}–${this.dig.oMax} kg/day). Very low loading thins the microbial community — yield ~75%. Increasing daily feeding is the single most effective improvement.`};
-      if (r < 0.70) return {f:.88,cls:"lo",label:"Slightly underloaded",why:` ${this.dungKg} kg/day is below the ${this.dig.lbl} optimal range. Reduced microbial density gives ~88% yield. Adding more dung each day would improve output.`};
-      if (r<=1.15)  return {f:1.0,cls:"ok",label:"Optimal loading",why:null};
-      if (r<=1.40)  return {f:.90,cls:"lo",label:"Slightly overloaded",why:` ${this.dungKg} kg/day slightly exceeds the ${this.dig.lbl} optimal — some slurry exits before full digestion. Yield ~90%.`};
-      return {f:.78,cls:"hi",label:"Overloaded",why:` ${this.dungKg} kg/day significantly exceeds the ${this.dig.lbl} capacity — HRT may drop below 20 days. Yield ~78%.`};
-    },
-    get prod() {
-      return parseFloat((Math.min(this.dungKg * this.biogasYield, this.dig.maxP) * this.eff.f).toFixed(2));
-    },
-    get prodSub() {
-      const raw = this.dungKg * this.biogasYield, p = [];
-      if (raw > this.dig.maxP) p.push(`capped at max ${this.dig.maxP.toFixed(1)} m³`);
-      if (this.eff.f < 1) p.push(`${Math.round(this.eff.f*100)}% eff.`);
-      return p.join(' · ');
-    },
-    get sr()       { return this.stoves===1 ? this.rSingle : this.rDouble },
-    get cookUse()  { return parseFloat((this.cookHrs * this.sr).toFixed(2)) },
-    get surplus()  { return parseFloat((this.prod - this.cookUse).toFixed(2)) },
-    get ss()       { return this.surplus<0?'bad':this.surplus<0.3?'warn':'good' },
-    get annS()     { return Math.max(0, Math.round(this.surplus*365)) },
-    get extHrs()   { return this.sr>0 ? Math.max(0, Math.round((this.surplus/this.sr)*365)) : 0 },
-    get surpct()   { return this.prod<=0 ? 0 : Math.round((Math.max(0,this.surplus)/this.prod)*100) },
-    get cpct()     { return Math.min(100,(this.cookUse/Math.max(this.prod,this.cookUse,.01))*100).toFixed(1) },
-    get spct()     { return Math.max(0,(this.surplus/Math.max(this.prod,this.cookUse,.01))*100).toFixed(1) },
-    get slurryL()  { return Math.round(this.dungKg*(1+this.ratio)) },
-    get bpd()      { return Math.ceil(this.slurryL/(parseFloat(this.bucketL)||5)) },
 
-    // Methods
-    zs(w) {
-      const f = v => Math.max(0, Math.min(1,(v-5)/115));
-      const lo=f(this.dig.oMin), hi=f(this.dig.oMax), pt=f(this.dungKg);
-      if (w==='lo') return `left:0;width:${lo*100}%`;
-      if (w==='ok') return `left:${lo*100}%;width:${(hi-lo)*100}%`;
-      if (w==='hi') return `left:${hi*100}%;width:${(1-hi)*100}%`;
-      return `left:calc(${pt*100}% - 1.5px)`;
+    /**
+     * All digesters shown in the reference table:
+     * the three presets plus the user's custom entry.
+     */
+    get allDigesters() {
+      const c = this.customDigester;
+      return [
+        ...this.PRESET_DIGESTERS,
+        {
+          label:            `${c.volumeM3} m³ (custom)`,
+          optimalLoadMin:   c.optimalLoadMin || 1,
+          optimalLoadMax:   c.optimalLoadMax || 2,
+          maxDailyOutputM3: c.maxDailyOutputM3 || 0.5,
+          hrt:              '—',
+          livestock:        'custom',
+        },
+      ];
     },
-    dpill(d) {
-      const pct = Math.round((this.dungKg/((d.oMin+d.oMax)/2))*100);
-      if (pct<65) return {c:'plo',l:'underloaded'};
-      if (pct>135) return {c:'phi',l:'overloaded'};
-      return {c:'pok',l:'good'};
+
+    /**
+     * Efficiency factor based on how close the dung input is to the digester's
+     * optimal loading range.  Under- or over-loading both reduce yield because
+     * the microbial community either thins out or the slurry moves through too fast.
+     *
+     * Returns: { factor, badgeClass, label, explanation }
+     */
+    get loadingEfficiency() {
+      const d        = this.activeDigester;
+      const midpoint = (d.optimalLoadMin + d.optimalLoadMax) / 2;
+      const ratio    = this.dungKgPerDay / midpoint;
+
+      if (ratio < 0.50) return {
+        factor: 0.75, badgeClass: 'hi', label: 'Very underloaded',
+        explanation: `Only ${this.dungKgPerDay} kg/day into a ${d.label} digester (optimal ${d.optimalLoadMin}–${d.optimalLoadMax} kg/day). Very low loading thins the microbial community — yield ~75%. Increasing daily feeding is the single most effective improvement.`,
+      };
+      if (ratio < 0.70) return {
+        factor: 0.88, badgeClass: 'lo', label: 'Slightly underloaded',
+        explanation: `${this.dungKgPerDay} kg/day is below the ${d.label} optimal range. Reduced microbial density gives ~88% yield. Adding more dung each day would improve output.`,
+      };
+      if (ratio <= 1.15) return {
+        factor: 1.00, badgeClass: 'ok', label: 'Optimal loading',
+        explanation: null,
+      };
+      if (ratio <= 1.40) return {
+        factor: 0.90, badgeClass: 'lo', label: 'Slightly overloaded',
+        explanation: `${this.dungKgPerDay} kg/day slightly exceeds the ${d.label} optimal — some slurry exits before full digestion. Yield ~90%.`,
+      };
+      return {
+        factor: 0.78, badgeClass: 'hi', label: 'Overloaded',
+        explanation: `${this.dungKgPerDay} kg/day significantly exceeds the ${d.label} capacity — HRT may drop below 20 days. Yield ~78%.`,
+      };
     },
-    ucls(u)  { return this.surplus>=u.need?'ok':this.surplus>=u.need*.55?'mg':'' },
-    ubadge(u){ return this.surplus>=u.need?{c:'y',t:'possible now'}:this.surplus>=u.need*.55?{c:'a',t:'nearly there'}:{c:'n',t:'need more surplus'} },
+
+    /**
+     * Estimated daily biogas production in m³.
+     * = dung input × yield rate × efficiency factor, capped at the digester's max output.
+     */
+    get dailyProductionM3() {
+      const theoretical = this.dungKgPerDay * this.biogasYieldPerKg;
+      const capped      = Math.min(theoretical, this.activeDigester.maxDailyOutputM3);
+      return parseFloat((capped * this.loadingEfficiency.factor).toFixed(2));
+    },
+
+    /**
+     * Short note shown under the production metric if production is
+     * being constrained by the digester capacity or loading efficiency.
+     */
+    get productionCapNote() {
+      const theoretical = this.dungKgPerDay * this.biogasYieldPerKg;
+      const notes = [];
+      if (theoretical > this.activeDigester.maxDailyOutputM3)
+        notes.push(`capped at max ${this.activeDigester.maxDailyOutputM3.toFixed(1)} m³`);
+      if (this.loadingEfficiency.factor < 1)
+        notes.push(`${Math.round(this.loadingEfficiency.factor * 100)}% eff.`);
+      return notes.join(' · ');
+    },
+
+    /** Gas consumed for cooking each day. */
+    get dailyCookingUseM3() {
+      const rateM3PerHr = this.numberOfStoves === 1 ? this.singleStoveRate : this.doubleStoveRate;
+      return parseFloat((this.cookingHoursPerDay * rateM3PerHr).toFixed(2));
+    },
+
+    /** Surplus = production minus cooking use.  Can be negative (shortfall). */
+    get dailySurplusM3() {
+      return parseFloat((this.dailyProductionM3 - this.dailyCookingUseM3).toFixed(2));
+    },
+
+    /** CSS class applied to the surplus metric tile and status banner. */
+    get surplusStatus() {
+      if (this.dailySurplusM3 < 0)    return 'bad';
+      if (this.dailySurplusM3 < 0.3)  return 'warn';
+      return 'good';
+    },
+
+    /** Surplus expressed as a percentage of total production (for display). */
+    get surplusAsPercentOfProduction() {
+      if (this.dailyProductionM3 <= 0) return 0;
+      return Math.round((Math.max(0, this.dailySurplusM3) / this.dailyProductionM3) * 100);
+    },
+
+    /** Annual surplus in m³ (surplus × 365, floored at 0). */
+    get annualSurplusM3() {
+      return Math.max(0, Math.round(this.dailySurplusM3 * 365));
+    },
+
+    /**
+     * How many extra cooking hours the surplus could provide per year
+     * (at the current stove consumption rate).
+     */
+    get extraCookingHoursPerYear() {
+      const rateM3PerHr = this.numberOfStoves === 1 ? this.singleStoveRate : this.doubleStoveRate;
+      if (rateM3PerHr <= 0) return 0;
+      return Math.max(0, Math.round((this.dailySurplusM3 / rateM3PerHr) * 365));
+    },
+
+    /** Width of the "cooking" segment in the stacked bar, as a percentage. */
+    get cookingBarWidthPct() {
+      const total = Math.max(this.dailyProductionM3, this.dailyCookingUseM3, 0.01);
+      return Math.min(100, (this.dailyCookingUseM3 / total) * 100).toFixed(1);
+    },
+
+    /** Width of the "surplus" segment in the stacked bar, as a percentage. */
+    get surplusBarWidthPct() {
+      const total = Math.max(this.dailyProductionM3, this.dailyCookingUseM3, 0.01);
+      return Math.max(0, (this.dailySurplusM3 / total) * 100).toFixed(1);
+    },
+
+    /** Total litres of mixed slurry (dung + water) produced per day. */
+    get totalSlurryLitresPerDay() {
+      return Math.round(this.dungKgPerDay * (1 + this.waterToDungRatio));
+    },
+
+    /** Number of buckets needed to carry all the daily slurry (rounded up). */
+    get bucketsOfSlurryPerDay() {
+      return Math.ceil(this.totalSlurryLitresPerDay / (parseFloat(this.bucketSizeLitres) || 5));
+    },
+
+    // ═══════════════════════════════════════════════
+    // METHODS
+    // ═══════════════════════════════════════════════
+
+    /**
+     * Calculates the left / width style for each segment of the loading zone bar,
+     * and the position of the pointer marker.
+     *
+     * @param {string} segment  'underloaded' | 'optimal' | 'overloaded' | 'pointer'
+     * @returns {string}  CSS inline style string
+     */
+    zoneBarSegment(segment) {
+      const RANGE_MIN = 5, RANGE_MAX = 120;
+      // Convert a kg value to a 0–1 fraction of the bar
+      const toFraction = kg => Math.max(0, Math.min(1, (kg - RANGE_MIN) / (RANGE_MAX - RANGE_MIN)));
+
+      const d          = this.activeDigester;
+      const leftFrac   = toFraction(d.optimalLoadMin);
+      const rightFrac  = toFraction(d.optimalLoadMax);
+      const inputFrac  = toFraction(this.dungKgPerDay);
+
+      if (segment === 'underloaded') return `left: 0; width: ${leftFrac * 100}%`;
+      if (segment === 'optimal')     return `left: ${leftFrac * 100}%; width: ${(rightFrac - leftFrac) * 100}%`;
+      if (segment === 'overloaded')  return `left: ${rightFrac * 100}%; width: ${(1 - rightFrac) * 100}%`;
+      /* pointer */                  return `left: calc(${inputFrac * 100}% - 1.5px)`;
+    },
+
+    /**
+     * Returns the pill style for a digester row in the reference table,
+     * based on whether the current dung input is in range for that digester.
+     *
+     * @param {object} digester
+     * @returns {{ cssClass: string, label: string }}
+     */
+    getLoadingPillStyle(digester) {
+      const midpoint    = (digester.optimalLoadMin + digester.optimalLoadMax) / 2;
+      const percentLoad = Math.round((this.dungKgPerDay / midpoint) * 100);
+      if (percentLoad < 65)  return { cssClass: 'plo', label: 'underloaded' };
+      if (percentLoad > 135) return { cssClass: 'phi', label: 'overloaded' };
+      return { cssClass: 'pok', label: 'good' };
+    },
+
+    /**
+     * CSS class applied to a productive use card depending on whether
+     * the current surplus is enough to power it.
+     *
+     * @param {object} use
+     * @returns {string}  '' | 'mg' | 'ok'
+     */
+    getUseSurplusClass(use) {
+      if (this.dailySurplusM3 >= use.dailyNeedM3)         return 'ok';
+      if (this.dailySurplusM3 >= use.dailyNeedM3 * 0.55)  return 'mg';
+      return '';
+    },
+
+    /**
+     * Badge text and colour class for a productive use card.
+     *
+     * @param {object} use
+     * @returns {{ cssClass: string, label: string }}
+     */
+    getUseBadge(use) {
+      if (this.dailySurplusM3 >= use.dailyNeedM3)         return { cssClass: 'y', label: 'possible now' };
+      if (this.dailySurplusM3 >= use.dailyNeedM3 * 0.55)  return { cssClass: 'a', label: 'nearly there' };
+      return { cssClass: 'n', label: 'need more surplus' };
+    },
+
+    /** Toggle between dark and light mode by adding/removing .light on <html>. */
     toggleTheme() {
       this.isDark = !this.isDark;
       document.documentElement.className = this.isDark ? '' : 'light';
     },
-    save() {
+
+    /**
+     * Save all settings to localStorage so they persist between visits.
+     * Called on every settings input change.
+     */
+    saveSettings() {
       try {
         localStorage.setItem('biogas_settings', JSON.stringify({
-          biogasYield: this.biogasYield,
-          rSingle:     this.rSingle,
-          rDouble:     this.rDouble,
-          bucketL:     this.bucketL,
-          ratio:       this.ratio,
-          cDig:        this.cDig,
+          biogasYieldPerKg:  this.biogasYieldPerKg,
+          singleStoveRate:   this.singleStoveRate,
+          doubleStoveRate:   this.doubleStoveRate,
+          bucketSizeLitres:  this.bucketSizeLitres,
+          waterToDungRatio:  this.waterToDungRatio,
+          customDigester:    this.customDigester,
         }));
-      } catch(e) {}
+      } catch (e) {
+        // localStorage unavailable (e.g. private browsing) — silently ignore
+      }
     },
-    load() {
+
+    /**
+     * Load previously saved settings from localStorage.
+     * Called once on mount; missing keys fall back to defaults.
+     */
+    loadSettings() {
       try {
-        const s = JSON.parse(localStorage.getItem('biogas_settings') || 'null');
-        if (!s) return;
-        if (s.biogasYield) this.biogasYield = s.biogasYield;
-        if (s.rSingle)     this.rSingle     = s.rSingle;
-        if (s.rDouble)     this.rDouble     = s.rDouble;
-        if (s.bucketL)     this.bucketL     = s.bucketL;
-        if (s.ratio)       this.ratio       = s.ratio;
-        if (s.cDig)        this.cDig        = { ...this.cDig, ...s.cDig };
-      } catch(e) {}
+        const saved = JSON.parse(localStorage.getItem('biogas_settings') || 'null');
+        if (!saved) return;
+        if (saved.biogasYieldPerKg) this.biogasYieldPerKg = saved.biogasYieldPerKg;
+        if (saved.singleStoveRate)  this.singleStoveRate  = saved.singleStoveRate;
+        if (saved.doubleStoveRate)  this.doubleStoveRate  = saved.doubleStoveRate;
+        if (saved.bucketSizeLitres) this.bucketSizeLitres = saved.bucketSizeLitres;
+        if (saved.waterToDungRatio) this.waterToDungRatio = saved.waterToDungRatio;
+        if (saved.customDigester)   this.customDigester   = { ...this.customDigester, ...saved.customDigester };
+      } catch (e) {
+        // Corrupted data — silently ignore and keep defaults
+      }
     },
-    init() {
-      document.documentElement.className = '';  // dark by default
-      this.load();
+
+    /** Called by Petite Vue when the component mounts. */
+    onMount() {
+      document.documentElement.className = '';  // start in dark mode (no .light class)
+      this.loadSettings();
     },
-  }
+
+  }; // end App()
 }
 </script>
 </body>
